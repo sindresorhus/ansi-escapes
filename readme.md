@@ -117,6 +117,10 @@ Scroll display up one line.
 
 Scroll display down one line.
 
+### beep
+
+Output a beeping sound.
+
 
 ## Related
 

@@ -75,3 +75,5 @@ x.eraseUp = ESC + '1J';
 x.eraseScreen = ESC + '2J';
 x.scrollUp = ESC + 'S';
 x.scrollDown = ESC + 'T';
+
+x.beep = '\u0007';
