@@ -1,10 +1,8 @@
-'use strict';
-var test = require('ava');
-var fn = require('./');
+import test from 'ava';
+import m from './';
 
-test(function (t) {
-	t.assert(Object.keys(fn).length > 0);
-	t.assert(typeof fn.cursorTo === 'function');
-	t.assert(fn.cursorTo(2, 2) === '\u001b[3;3H');
-	t.end();
+test(t => {
+	t.true(Object.keys(m).length > 0);
+	t.is(typeof m.cursorTo, 'function');
+	t.is(m.cursorTo(2, 2), '\u001b[3;3H');
 });
