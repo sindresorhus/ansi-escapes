@@ -33,19 +33,19 @@ x.cursorMove = function (x, y) {
 };
 
 x.cursorUp = function (count) {
-	return ESC + (count || 1) + 'A';
+	return ESC + (typeof count === 'number' ? count : 1) + 'A';
 };
 
 x.cursorDown = function (count) {
-	return ESC + (count || 1) + 'B';
+	return ESC + (typeof count === 'number' ? count : 1) + 'B';
 };
 
 x.cursorForward = function (count) {
-	return ESC + (count || 1) + 'C';
+	return ESC + (typeof count === 'number' ? count : 1) + 'C';
 };
 
 x.cursorBackward = function (count) {
-	return ESC + (count || 1) + 'D';
+	return ESC + (typeof count === 'number' ? count : 1) + 'D';
 };
 
 x.cursorLeft = ESC + '1000D';
