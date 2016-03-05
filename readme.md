@@ -117,6 +117,10 @@ Scroll display up one line.
 
 Scroll display down one line.
 
+### clearScreen
+
+Clear the terminal screen.
+
 ### beep
 
 Output a beeping sound.
