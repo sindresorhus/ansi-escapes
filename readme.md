@@ -13,7 +13,7 @@ $ npm install --save ansi-escapes
 ## Usage
 
 ```js
-var ansiEscapes = require('ansi-escapes');
+const ansiEscapes = require('ansi-escapes');
 
 // moves the cursor two rows up and to the left
 process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
@@ -133,4 +133,4 @@ Output a beeping sound.
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
