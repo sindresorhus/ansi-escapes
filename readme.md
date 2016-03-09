@@ -131,6 +131,8 @@ Display an image.
 
 *Currently only supported on iTerm >=2.9.*
 
+See [term-img](https://github.com/sindresorhus/term-img) for a higher-level module.
+
 #### input
 
 Type: `buffer`
