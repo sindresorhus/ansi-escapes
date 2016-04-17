@@ -158,6 +158,13 @@ The width and height are given as a number followed by a unit, or the word "auto
 Type: `boolean`<br>
 Default: `true`
 
+### iTerm.setCwd([path])
+
+Type: `string`<br>
+Default: `process.cwd()`
+
+[Inform iTerm](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
+
 
 ## Related
 

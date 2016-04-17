@@ -39,7 +39,9 @@
     "control",
     "code",
     "codes",
-    "cursor"
+    "cursor",
+    "iterm",
+    "iterm2"
   ],
   "devDependencies": {
     "ava": "*",
