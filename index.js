@@ -1,6 +1,6 @@
 'use strict';
-var ESC = '\u001b[';
-var x = module.exports;
+const ESC = '\u001B[';
+const x = module.exports;
 
 x.cursorTo = function (x, y) {
 	if (arguments.length === 0) {
@@ -14,8 +14,8 @@ x.cursorTo = function (x, y) {
 	return ESC + (y + 1) + ';' + (x + 1) + 'H';
 };
 
-x.cursorMove = function (x, y) {
-	var ret = '';
+x.cursorMove = (x, y) => {
+	let ret = '';
 
 	if (x < 0) {
 		ret += ESC + (-x) + 'D';
@@ -32,21 +32,10 @@ x.cursorMove = function (x, y) {
 	return ret;
 };
 
-x.cursorUp = function (count) {
-	return ESC + (typeof count === 'number' ? count : 1) + 'A';
-};
-
-x.cursorDown = function (count) {
-	return ESC + (typeof count === 'number' ? count : 1) + 'B';
-};
-
-x.cursorForward = function (count) {
-	return ESC + (typeof count === 'number' ? count : 1) + 'C';
-};
-
-x.cursorBackward = function (count) {
-	return ESC + (typeof count === 'number' ? count : 1) + 'D';
-};
+x.cursorUp = count => ESC + (typeof count === 'number' ? count : 1) + 'A';
+x.cursorDown = count => ESC + (typeof count === 'number' ? count : 1) + 'B';
+x.cursorForward = count => ESC + (typeof count === 'number' ? count : 1) + 'C';
+x.cursorBackward = count => ESC + (typeof count === 'number' ? count : 1) + 'D';
 
 x.cursorLeft = ESC + 'G';
 x.cursorSavePosition = ESC + 's';
@@ -57,10 +46,10 @@ x.cursorPrevLine = ESC + 'F';
 x.cursorHide = ESC + '?25l';
 x.cursorShow = ESC + '?25h';
 
-x.eraseLines = function (count) {
-	var clear = '';
+x.eraseLines = count => {
+	let clear = '';
 
-	for (var i = 0; i < count; i++) {
+	for (let i = 0; i < count; i++) {
 		clear += x.cursorLeft + x.eraseEndLine + (i < count - 1 ? x.cursorUp() : '');
 	}
 
@@ -76,20 +65,20 @@ x.eraseScreen = ESC + '2J';
 x.scrollUp = ESC + 'S';
 x.scrollDown = ESC + 'T';
 
-x.clearScreen = '\u001bc';
+x.clearScreen = '\u001Bc';
 x.beep = '\u0007';
 
-x.image = function (buf, opts) {
+x.image = (buf, opts) => {
 	opts = opts || {};
 
-	var ret = '\u001b]1337;File=inline=1';
+	let ret = '\u001B]1337;File=inline=1';
 
 	if (opts.width) {
-		ret += ';width=' + opts.width;
+		ret += `;width=${opts.width}`;
 	}
 
 	if (opts.height) {
-		ret += ';height=' + opts.height;
+		ret += `;height=${opts.height}`;
 	}
 
 	if (opts.preserveAspectRatio === false) {
@@ -101,6 +90,4 @@ x.image = function (buf, opts) {
 
 x.iTerm = {};
 
-x.iTerm.setCwd = function (cwd) {
-	return '\u001b]50;CurrentDir=' + (cwd || process.cwd()) + '\u0007';
-};
+x.iTerm.setCwd = cwd => '\u001B]50;CurrentDir=' + (cwd || process.cwd()) + '\u0007';
