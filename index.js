@@ -48,7 +48,7 @@ x.cursorBackward = function (count) {
 	return ESC + (typeof count === 'number' ? count : 1) + 'D';
 };
 
-x.cursorLeft = ESC + '1000D';
+x.cursorLeft = ESC + 'G';
 x.cursorSavePosition = ESC + 's';
 x.cursorRestorePosition = ESC + 'u';
 x.cursorGetPosition = ESC + '6n';
