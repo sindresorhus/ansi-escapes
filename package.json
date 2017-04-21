@@ -44,7 +44,7 @@
     "iterm2"
   ],
   "devDependencies": {
-    "ava": "*",
-    "xo": "*"
+    "ava": "^0.17.0",
+    "xo": "^0.16.0"
   }
 }
