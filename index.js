@@ -50,7 +50,11 @@ x.eraseLines = count => {
 	let clear = '';
 
 	for (let i = 0; i < count; i++) {
-		clear += x.cursorLeft + x.eraseEndLine + (i < count - 1 ? x.cursorUp() : '');
+		clear += x.eraseLine + (i < count - 1 ? x.cursorUp() : '');
+	}
+
+	if (count) {
+		clear += x.cursorLeft;
 	}
 
 	return clear;
