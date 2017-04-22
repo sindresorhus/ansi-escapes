@@ -1,6 +1,7 @@
 'use strict';
-const ESC = '\u001B[';
 const x = module.exports;
+const ESC = '\u001B[';
+const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
 
 x.cursorTo = function (x, y) {
 	if (arguments.length === 0) {
@@ -38,8 +39,8 @@ x.cursorForward = count => ESC + (typeof count === 'number' ? count : 1) + 'C';
 x.cursorBackward = count => ESC + (typeof count === 'number' ? count : 1) + 'D';
 
 x.cursorLeft = ESC + 'G';
-x.cursorSavePosition = ESC + 's';
-x.cursorRestorePosition = ESC + 'u';
+x.cursorSavePosition = ESC + (isTerminalApp ? '7' : 's');
+x.cursorRestorePosition = ESC + (isTerminalApp ? '8' : 'u');
 x.cursorGetPosition = ESC + '6n';
 x.cursorNextLine = ESC + 'E';
 x.cursorPrevLine = ESC + 'F';
