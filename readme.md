@@ -23,11 +23,9 @@ process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 
 ## API
 
-### cursorTo([x, [y]])
+### cursorTo(x, [y])
 
 Set the absolute position of the cursor. `x0` `y0` is the top left of the screen.
-
-Specify either both `x` & `y`, only `x`, or nothing.
 
 ### cursorMove(x, [y])
 

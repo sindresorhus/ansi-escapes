@@ -5,7 +5,7 @@ const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
 
 x.cursorTo = function (x, y) {
 	if (arguments.length === 0) {
-		return ESC + 'H';
+		throw new Error('The `x` argument is required');
 	}
 
 	if (arguments.length === 1) {
@@ -16,6 +16,10 @@ x.cursorTo = function (x, y) {
 };
 
 x.cursorMove = (x, y) => {
+	if (x === undefined || x === null) {
+		throw new Error('The `x` argument is required');
+	}
+
 	let ret = '';
 
 	if (x < 0) {
