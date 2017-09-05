@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save ansi-escapes
+$ npm install ansi-escapes
 ```
 
 
@@ -127,7 +127,7 @@ Output a beeping sound.
 
 Display an image.
 
-*Currently only supported on iTerm >=2.9.*
+*Currently only supported on iTerm2 >=3*
 
 See [term-img](https://github.com/sindresorhus/term-img) for a higher-level module.
 
@@ -161,7 +161,7 @@ Default: `true`
 Type: `string`<br>
 Default: `process.cwd()`
 
-[Inform iTerm](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
+[Inform iTerm2](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
 
 
 ## Related
