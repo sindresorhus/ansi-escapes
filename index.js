@@ -78,6 +78,9 @@ x.scrollUp = ESC + 'S';
 x.scrollDown = ESC + 'T';
 
 x.clearScreen = '\u001Bc';
+
+// Extracted from Jest - https://github.com/facebook/jest/blob/1c56fb88f8527e25abffaa9de62c6e2476cdccc9/packages/jest-cli/src/constants.js#L12
+x.clearTerminal = process.platform === 'win32' ? `${x.eraseScreen}${ESC}0f` : `${x.eraseScreen}${ESC}3J${ESC}H`;
 x.beep = BEL;
 
 x.link = (text, url) => {

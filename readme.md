@@ -119,6 +119,10 @@ Scroll display down one line.
 
 Clear the terminal screen.
 
+### clearTerminal
+
+Clear the whole terminal, not just visible part of it.
+
 ### beep
 
 Output a beeping sound.
