@@ -40,10 +40,10 @@ x.cursorMove = (x, y) => {
 	return ret;
 };
 
-x.cursorUp = count => ESC + (typeof count === 'number' ? count : 1) + 'A';
-x.cursorDown = count => ESC + (typeof count === 'number' ? count : 1) + 'B';
-x.cursorForward = count => ESC + (typeof count === 'number' ? count : 1) + 'C';
-x.cursorBackward = count => ESC + (typeof count === 'number' ? count : 1) + 'D';
+x.cursorUp = (count = 1) => ESC + count + 'A';
+x.cursorDown = (count = 1) => ESC + count + 'B';
+x.cursorForward = (count = 1) => ESC + count + 'C';
+x.cursorBackward = (count = 1) => ESC + count + 'D';
 
 x.cursorLeft = ESC + 'G';
 x.cursorSavePosition = ESC + (isTerminalApp ? '7' : 's');
@@ -106,26 +106,24 @@ x.link = (text, url) => {
 	].join('');
 };
 
-x.image = (buf, opts) => {
-	opts = opts || {};
+x.image = (buffer, options = {}) => {
+	let ret = `${OSC}1337;File=inline=1`;
 
-	let ret = OSC + '1337;File=inline=1';
-
-	if (opts.width) {
-		ret += `;width=${opts.width}`;
+	if (options.width) {
+		ret += `;width=${options.width}`;
 	}
 
-	if (opts.height) {
-		ret += `;height=${opts.height}`;
+	if (options.height) {
+		ret += `;height=${options.height}`;
 	}
 
-	if (opts.preserveAspectRatio === false) {
+	if (options.preserveAspectRatio === false) {
 		ret += ';preserveAspectRatio=0';
 	}
 
-	return ret + ':' + buf.toString('base64') + BEL;
+	return ret + ':' + buffer.toString('base64') + BEL;
 };
 
 x.iTerm = {};
 
-x.iTerm.setCwd = cwd => OSC + '50;CurrentDir=' + (cwd || process.cwd()) + BEL;
+x.iTerm.setCwd = (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`;
