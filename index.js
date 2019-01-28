@@ -79,8 +79,14 @@ x.scrollDown = ESC + 'T';
 
 x.clearScreen = '\u001Bc';
 
-// Extracted from Jest - https://github.com/facebook/jest/blob/1c56fb88f8527e25abffaa9de62c6e2476cdccc9/packages/jest-cli/src/constants.js#L12
-x.clearTerminal = process.platform === 'win32' ? `${x.eraseScreen}${ESC}0f` : `${x.eraseScreen}${ESC}3J${ESC}H`;
+x.clearTerminal = process.platform === 'win32' ?
+	`${x.eraseScreen}${ESC}0f` :
+	// 1. Erases the screen (Only done in case `2` is not supported)
+	// 2. Erases the whole screen including scrollback buffer
+	// 3. Moves cursor to the top-left position
+	// More info: https://www.real-world-systems.com/docs/ANSIcode.html
+	`${x.eraseScreen}${ESC}3J${ESC}H`;
+
 x.beep = BEL;
 
 x.link = (text, url) => {
