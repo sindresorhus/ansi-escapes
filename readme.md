@@ -117,11 +117,11 @@ Scroll display down one line.
 
 ### clearScreen
 
-Clear the terminal screen.
+Clear the terminal screen. (Viewport)
 
 ### clearTerminal
 
-Clear the whole terminal, not just visible part of it.
+Clear the whole terminal, including scrollback buffer. (Not just the visible part of it)
 
 ### beep
 
