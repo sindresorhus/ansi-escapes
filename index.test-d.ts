@@ -36,7 +36,11 @@ expectType<string>(ansiEscapes.beep);
 expectType<string>(ansiEscapes.link('foo', 'https://foo.bar'));
 expectType<string>(ansiEscapes.image(new Buffer(1)));
 expectType<string>(ansiEscapes.image(new Buffer(1), {width: 1}));
+expectType<string>(ansiEscapes.image(new Buffer(1), {width: '1px'}));
+expectType<string>(ansiEscapes.image(new Buffer(1), {width: 'auto'}));
 expectType<string>(ansiEscapes.image(new Buffer(1), {height: 1}));
+expectType<string>(ansiEscapes.image(new Buffer(1), {height: '1px'}));
+expectType<string>(ansiEscapes.image(new Buffer(1), {height: 'auto'}));
 expectType<string>(
 	ansiEscapes.image(new Buffer(1), {preserveAspectRatio: false})
 );
