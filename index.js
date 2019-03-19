@@ -1,12 +1,14 @@
 'use strict';
-const x = module.exports;
+const ansiEscapes = module.exports;
+module.exports.default = ansiEscapes;
+
 const ESC = '\u001B[';
 const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
 
-x.cursorTo = (x, y) => {
+ansiEscapes.cursorTo = (x, y) => {
 	if (typeof x !== 'number') {
 		throw new TypeError('The `x` argument is required');
 	}
@@ -18,7 +20,7 @@ x.cursorTo = (x, y) => {
 	return ESC + (y + 1) + ';' + (x + 1) + 'H';
 };
 
-x.cursorMove = (x, y) => {
+ansiEscapes.cursorMove = (x, y) => {
 	if (typeof x !== 'number') {
 		throw new TypeError('The `x` argument is required');
 	}
@@ -40,56 +42,56 @@ x.cursorMove = (x, y) => {
 	return ret;
 };
 
-x.cursorUp = (count = 1) => ESC + count + 'A';
-x.cursorDown = (count = 1) => ESC + count + 'B';
-x.cursorForward = (count = 1) => ESC + count + 'C';
-x.cursorBackward = (count = 1) => ESC + count + 'D';
+ansiEscapes.cursorUp = (count = 1) => ESC + count + 'A';
+ansiEscapes.cursorDown = (count = 1) => ESC + count + 'B';
+ansiEscapes.cursorForward = (count = 1) => ESC + count + 'C';
+ansiEscapes.cursorBackward = (count = 1) => ESC + count + 'D';
 
-x.cursorLeft = ESC + 'G';
-x.cursorSavePosition = ESC + (isTerminalApp ? '7' : 's');
-x.cursorRestorePosition = ESC + (isTerminalApp ? '8' : 'u');
-x.cursorGetPosition = ESC + '6n';
-x.cursorNextLine = ESC + 'E';
-x.cursorPrevLine = ESC + 'F';
-x.cursorHide = ESC + '?25l';
-x.cursorShow = ESC + '?25h';
+ansiEscapes.cursorLeft = ESC + 'G';
+ansiEscapes.cursorSavePosition = ESC + (isTerminalApp ? '7' : 's');
+ansiEscapes.cursorRestorePosition = ESC + (isTerminalApp ? '8' : 'u');
+ansiEscapes.cursorGetPosition = ESC + '6n';
+ansiEscapes.cursorNextLine = ESC + 'E';
+ansiEscapes.cursorPrevLine = ESC + 'F';
+ansiEscapes.cursorHide = ESC + '?25l';
+ansiEscapes.cursorShow = ESC + '?25h';
 
-x.eraseLines = count => {
+ansiEscapes.eraseLines = count => {
 	let clear = '';
 
 	for (let i = 0; i < count; i++) {
-		clear += x.eraseLine + (i < count - 1 ? x.cursorUp() : '');
+		clear += ansiEscapes.eraseLine + (i < count - 1 ? ansiEscapes.cursorUp() : '');
 	}
 
 	if (count) {
-		clear += x.cursorLeft;
+		clear += ansiEscapes.cursorLeft;
 	}
 
 	return clear;
 };
 
-x.eraseEndLine = ESC + 'K';
-x.eraseStartLine = ESC + '1K';
-x.eraseLine = ESC + '2K';
-x.eraseDown = ESC + 'J';
-x.eraseUp = ESC + '1J';
-x.eraseScreen = ESC + '2J';
-x.scrollUp = ESC + 'S';
-x.scrollDown = ESC + 'T';
+ansiEscapes.eraseEndLine = ESC + 'K';
+ansiEscapes.eraseStartLine = ESC + '1K';
+ansiEscapes.eraseLine = ESC + '2K';
+ansiEscapes.eraseDown = ESC + 'J';
+ansiEscapes.eraseUp = ESC + '1J';
+ansiEscapes.eraseScreen = ESC + '2J';
+ansiEscapes.scrollUp = ESC + 'S';
+ansiEscapes.scrollDown = ESC + 'T';
 
-x.clearScreen = '\u001Bc';
+ansiEscapes.clearScreen = '\u001Bc';
 
-x.clearTerminal = process.platform === 'win32' ?
-	`${x.eraseScreen}${ESC}0f` :
+ansiEscapes.clearTerminal = process.platform === 'win32' ?
+	`${ansiEscapes.eraseScreen}${ESC}0f` :
 	// 1. Erases the screen (Only done in case `2` is not supported)
 	// 2. Erases the whole screen including scrollback buffer
 	// 3. Moves cursor to the top-left position
 	// More info: https://www.real-world-systems.com/docs/ANSIcode.html
-	`${x.eraseScreen}${ESC}3J${ESC}H`;
+	`${ansiEscapes.eraseScreen}${ESC}3J${ESC}H`;
 
-x.beep = BEL;
+ansiEscapes.beep = BEL;
 
-x.link = (text, url) => {
+ansiEscapes.link = (text, url) => {
 	return [
 		OSC,
 		'8',
@@ -106,7 +108,7 @@ x.link = (text, url) => {
 	].join('');
 };
 
-x.image = (buffer, options = {}) => {
+ansiEscapes.image = (buffer, options = {}) => {
 	let ret = `${OSC}1337;File=inline=1`;
 
 	if (options.width) {
@@ -124,6 +126,6 @@ x.image = (buffer, options = {}) => {
 	return ret + ':' + buffer.toString('base64') + BEL;
 };
 
-x.iTerm = {};
-
-x.iTerm.setCwd = (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`;
+ansiEscapes.iTerm = {
+	setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`
+};
