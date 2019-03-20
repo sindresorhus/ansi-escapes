@@ -44,6 +44,9 @@
 		"iterm",
 		"iterm2"
 	],
+	"dependencies": {
+		"type-fest": "^0.3.0"
+	},
 	"devDependencies": {
 		"@types/node": "^11.11.3",
 		"ava": "^1.3.1",
