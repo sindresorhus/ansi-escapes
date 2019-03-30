@@ -1,28 +1,30 @@
 /// <reference types="node"/>
 import {LiteralUnion} from 'type-fest';
 
-export interface ImageOptions {
-	/**
-	The width is given as a number followed by a unit, or the word `'auto'`.
+declare namespace ansiEscapes {
+	interface ImageOptions {
+		/**
+		The width is given as a number followed by a unit, or the word `'auto'`.
 
-	- `N`: N character cells.
-	- `Npx`: N pixels.
-	- `N%`: N percent of the session's width or height.
-	- `auto`: The image's inherent size will be used to determine an appropriate dimension.
-	*/
-	readonly width?: LiteralUnion<'auto', number | string>;
+		- `N`: N character cells.
+		- `Npx`: N pixels.
+		- `N%`: N percent of the session's width or height.
+		- `auto`: The image's inherent size will be used to determine an appropriate dimension.
+		*/
+		readonly width?: LiteralUnion<'auto', number | string>;
 
-	/**
-	The height is given as a number followed by a unit, or the word `'auto'`.
+		/**
+		The height is given as a number followed by a unit, or the word `'auto'`.
 
-	- `N`: N character cells.
-	- `Npx`: N pixels.
-	- `N%`: N percent of the session's width or height.
-	- `auto`: The image's inherent size will be used to determine an appropriate dimension.
-	*/
-	readonly height?: LiteralUnion<'auto', number | string>;
+		- `N`: N character cells.
+		- `Npx`: N pixels.
+		- `N%`: N percent of the session's width or height.
+		- `auto`: The image's inherent size will be used to determine an appropriate dimension.
+		*/
+		readonly height?: LiteralUnion<'auto', number | string>;
 
-	readonly preserveAspectRatio?: boolean;
+		readonly preserveAspectRatio?: boolean;
+	}
 }
 
 declare const ansiEscapes: {
@@ -182,7 +184,7 @@ declare const ansiEscapes: {
 
 	@param buffer - Buffer of an image. Usually read in with `fs.readFile()`.
 	*/
-	image(buffer: Buffer, options?: ImageOptions): string;
+	image(buffer: Buffer, options?: ansiEscapes.ImageOptions): string;
 
 	iTerm: {
 		/**
@@ -192,6 +194,9 @@ declare const ansiEscapes: {
 		*/
 		setCwd(cwd: string): string;
 	};
+
+	// TODO: remove this in the next major version
+	default: typeof ansiEscapes;
 };
 
-export default ansiEscapes;
+export = ansiEscapes;
