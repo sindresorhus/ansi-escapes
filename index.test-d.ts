@@ -1,5 +1,5 @@
-import {expectType} from 'tsd-check';
-import ansiEscapes from '.';
+import {expectType} from 'tsd';
+import ansiEscapes = require('.');
 
 expectType<string>(ansiEscapes.cursorTo(0));
 expectType<string>(ansiEscapes.cursorTo(0, 1));

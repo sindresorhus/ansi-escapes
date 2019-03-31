@@ -1,5 +1,6 @@
 'use strict';
 const ansiEscapes = module.exports;
+// TODO: remove this in the next major version
 module.exports.default = ansiEscapes;
 
 const ESC = '\u001B[';
