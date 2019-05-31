@@ -179,6 +179,14 @@ Default: `process.cwd()`
 - [ansi-styles](https://github.com/chalk/ansi-styles) - ANSI escape codes for styling strings in the terminal
 
 
-## License
+---
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+<div align="center">
+	<b>
+		<a href="https://tidelift.com/subscription/pkg/npm-ansi-escapes?utm_source=npm-ansi-escapes&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
+	</b>
+	<br>
+	<sub>
+		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
+	</sub>
+</div>
