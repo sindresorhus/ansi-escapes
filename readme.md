@@ -23,11 +23,11 @@ process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 
 ## API
 
-### cursorTo(x, [y])
+### cursorTo(x, y?)
 
 Set the absolute position of the cursor. `x0` `y0` is the top left of the screen.
 
-### cursorMove(x, [y])
+### cursorMove(x, y?)
 
 Set the position of the cursor relative to its current position.
 
@@ -133,7 +133,7 @@ Create a clickable link.
 
 [Supported terminals.](https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda) Use [`supports-hyperlinks`](https://github.com/jamestalmage/supports-hyperlinks) to detect link support.
 
-### image(input, [options])
+### image(filePath, options?)
 
 Display an image.
 
@@ -149,10 +149,12 @@ Buffer of an image. Usually read in with `fs.readFile()`.
 
 #### options
 
+Type: `object`
+
 ##### width
 ##### height
 
-Type: `string` `number`
+Type: `string | number`
 
 The width and height are given as a number followed by a unit, or the word "auto".
 
@@ -166,7 +168,7 @@ The width and height are given as a number followed by a unit, or the word "auto
 Type: `boolean`<br>
 Default: `true`
 
-### iTerm.setCwd([path])
+### iTerm.setCwd(path?)
 
 Type: `string`<br>
 Default: `process.cwd()`
