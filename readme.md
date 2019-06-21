@@ -41,11 +41,11 @@ Move cursor down a specific amount of rows. Default is `1`.
 
 ### cursorForward(count)
 
-Move cursor forward a specific amount of rows. Default is `1`.
+Move cursor forward a specific amount of columns. Default is `1`.
 
 ### cursorBackward(count)
 
-Move cursor backward a specific amount of rows. Default is `1`.
+Move cursor backward a specific amount of columns. Default is `1`.
 
 ### cursorLeft
 
