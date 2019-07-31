@@ -175,6 +175,52 @@ Default: `process.cwd()`
 
 [Inform iTerm2](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
 
+### iTerm.annotation(message, options?)
+
+Creates an escape code to display an "annotation" in iTerm2.
+
+An annotation looks like this when shown:
+
+![screenshot of iTerm annotation](https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png)
+
+See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
+
+#### message
+
+Type: `string`
+
+Message to display within annotation. The `|` character is disallowed and will be stripped.
+
+#### options
+
+Type: `object`
+
+Options to control display of annotation.
+
+##### length
+
+Type: `number`
+
+Nonzero number of cells to annotate. Defaults to remainder of line.
+
+##### x
+
+Type: `number`
+
+Starting X coordinate; defaults to cursor position; must be used with `y` and `length`.
+
+##### y
+
+Type: `number`
+
+Starting Y coordinate; defaults to cursor position; must be used with `x` and `length`.
+
+##### isHidden
+
+Type: `boolean`
+Default: `false`
+
+If `true`, create a "hidden" annotation. Annotations created this way can be shown using the "Show Annotations" iTerm command.
 
 ## Related
 

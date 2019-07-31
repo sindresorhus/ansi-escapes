@@ -25,6 +25,28 @@ declare namespace ansiEscapes {
 
 		readonly preserveAspectRatio?: boolean;
 	}
+
+	interface AnnotationOptions {
+		/**
+		Nonzero number of cells to annotate. Defaults to remainder of line.
+		*/
+		readonly length?: number;
+
+		/**
+		Starting X coordinate; defaults to cursor position; must be used with `y` and `length`.
+		 */
+		readonly x?: number;
+
+		/**
+		Starting Y coordinate; defaults to cursor position; must be used with `x` and `length`.
+		*/
+		readonly y?: number;
+
+		/**
+		If `true`, create a "hidden" annotation. Annotations created this way can be shown using the "Show Annotations" iTerm command.
+		*/
+		readonly isHidden?: boolean;
+	}
 }
 
 declare const ansiEscapes: {
@@ -193,6 +215,19 @@ declare const ansiEscapes: {
 		@param cwd - Current directory. Default: `process.cwd()`.
 		*/
 		setCwd(cwd: string): string;
+
+		/**
+		An annotation looks like this when shown:
+
+		![screenshot of iTerm annotation](https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png)
+
+		See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
+
+		@param message - Message to display within annotation. The `|` character is disallowed and will be stripped.
+		@param options - Options to control display of annotation.
+		@returns Escape code which will create an annotation when displayed in terminal.
+		*/
+		annotation(message: string, options?: ansiEscapes.AnnotationOptions): string;
 	};
 
 	// TODO: remove this in the next major version
