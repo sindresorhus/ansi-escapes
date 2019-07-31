@@ -49,8 +49,8 @@ ansiEscapes.cursorForward = (count = 1) => ESC + count + 'C';
 ansiEscapes.cursorBackward = (count = 1) => ESC + count + 'D';
 
 ansiEscapes.cursorLeft = ESC + 'G';
-ansiEscapes.cursorSavePosition = ESC + (isTerminalApp ? '7' : 's');
-ansiEscapes.cursorRestorePosition = ESC + (isTerminalApp ? '8' : 'u');
+ansiEscapes.cursorSavePosition = isTerminalApp ? '\u001B7' : ESC + 's';
+ansiEscapes.cursorRestorePosition = isTerminalApp ? '\u001B8' : ESC + 'u';
 ansiEscapes.cursorGetPosition = ESC + '6n';
 ansiEscapes.cursorNextLine = ESC + 'E';
 ansiEscapes.cursorPrevLine = ESC + 'F';
