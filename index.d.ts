@@ -28,7 +28,7 @@ declare namespace ansiEscapes {
 
 	interface AnnotationOptions {
 		/**
-		Nonzero number of cells to annotate.
+		Nonzero number of columns to annotate.
 
 		Default: The remainder of the line.
 		*/
@@ -53,7 +53,9 @@ declare namespace ansiEscapes {
 		readonly y?: number;
 
 		/**
-		If `true`, create a "hidden" annotation. Annotations created this way can be shown using the "Show Annotations" iTerm command.
+		Create a "hidden" annotation.
+		
+		Annotations created this way can be shown using the "Show Annotations" iTerm command.
 		*/
 		readonly isHidden?: boolean;
 	}
