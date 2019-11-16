@@ -28,17 +28,27 @@ declare namespace ansiEscapes {
 
 	interface AnnotationOptions {
 		/**
-		Nonzero number of cells to annotate. Defaults to remainder of line.
+		Nonzero number of cells to annotate.
+
+		Default: The remainder of the line.
 		*/
 		readonly length?: number;
 
 		/**
-		Starting X coordinate; defaults to cursor position; must be used with `y` and `length`.
-		 */
+		Starting X coordinate.
+
+		Must be used with `y` and `length`.
+
+		Default: The cursor position
+		*/
 		readonly x?: number;
 
 		/**
-		Starting Y coordinate; defaults to cursor position; must be used with `x` and `length`.
+		Starting Y coordinate.
+
+		Must be used with `x` and `length`.
+
+		Default: Cursor position.
 		*/
 		readonly y?: number;
 
