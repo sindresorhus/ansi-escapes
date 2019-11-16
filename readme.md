@@ -181,7 +181,7 @@ Creates an escape code to display an "annotation" in iTerm2.
 
 An annotation looks like this when shown:
 
-![screenshot of iTerm annotation](https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png)
+<img src="https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png" width="500">
 
 See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
 
@@ -189,7 +189,7 @@ See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/docume
 
 Type: `string`
 
-Message to display within annotation.
+The message to display within the annotation.
 
 The `|` character is disallowed and will be stripped.
 
