@@ -45,12 +45,12 @@
 		"iterm2"
 	],
 	"dependencies": {
-		"type-fest": "^0.5.2"
+		"type-fest": "^0.8.1"
 	},
 	"devDependencies": {
 		"@types/node": "^12.0.7",
 		"ava": "^2.1.0",
-		"tsd": "^0.7.1",
-		"xo": "^0.24.0"
+		"tsd": "^0.11.0",
+		"xo": "^0.25.3"
 	}
 }

@@ -132,14 +132,17 @@ ansiEscapes.iTerm = {
 
 	annotation: (message, options = {}) => {
 		let ret = `${OSC}1337;`;
+
 		const hasX = typeof options.x !== 'undefined';
 		const hasY = typeof options.y !== 'undefined';
 		if ((hasX || hasY) && !(hasX && hasY && typeof options.length !== 'undefined')) {
 			throw new Error('`x`, `y` and `length` must be defined when `x` or `y` is defined');
 		}
-		// eslint-disable-next-line padding-line-between-statements
+
 		message = message.replace(/\|/g, '');
+
 		ret += options.isHidden ? 'AddHiddenAnnotation=' : 'AddAnnotation=';
+
 		if (options.length > 0) {
 			ret +=
 					(hasX ?

@@ -54,7 +54,7 @@ declare namespace ansiEscapes {
 
 		/**
 		Create a "hidden" annotation.
-		
+
 		Annotations created this way can be shown using the "Show Annotations" iTerm command.
 		*/
 		readonly isHidden?: boolean;

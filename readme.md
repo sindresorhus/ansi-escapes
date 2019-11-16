@@ -2,13 +2,11 @@
 
 > [ANSI escape codes](http://www.termsys.demon.co.uk/vtansi.htm) for manipulating the terminal
 
-
 ## Install
 
 ```
 $ npm install ansi-escapes
 ```
-
 
 ## Usage
 
@@ -19,7 +17,6 @@ const ansiEscapes = require('ansi-escapes');
 process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 //=> '\u001B[2A\u001B[1000D'
 ```
-
 
 ## API
 
@@ -165,12 +162,12 @@ The width and height are given as a number followed by a unit, or the word "auto
 
 ##### preserveAspectRatio
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 ### iTerm.setCwd(path?)
 
-Type: `string`<br>
+Type: `string`\
 Default: `process.cwd()`
 
 [Inform iTerm2](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
