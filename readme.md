@@ -189,38 +189,47 @@ See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/docume
 
 Type: `string`
 
-Message to display within annotation. The `|` character is disallowed and will be stripped.
+Message to display within annotation.
+
+The `|` character is disallowed and will be stripped.
 
 #### options
 
 Type: `object`
 
-Options to control display of annotation.
-
 ##### length
 
-Type: `number`
+Type: `number`\
+Default: The remainder of the line
 
-Nonzero number of cells to annotate. Defaults to remainder of line.
+Nonzero number of columns to annotate.
 
 ##### x
 
-Type: `number`
+Type: `number`\
+Default: Cursor position
 
-Starting X coordinate; defaults to cursor position; must be used with `y` and `length`.
+Starting X coordinate.
+
+Must be used with `y` and `length`.
 
 ##### y
 
-Type: `number`
+Type: `number`\
+Default: Cursor position
 
-Starting Y coordinate; defaults to cursor position; must be used with `x` and `length`.
+Starting Y coordinate.
+
+Must be used with `x` and `length`.
 
 ##### isHidden
 
-Type: `boolean`
+Type: `boolean`\
 Default: `false`
 
-If `true`, create a "hidden" annotation. Annotations created this way can be shown using the "Show Annotations" iTerm command.
+Create a "hidden" annotation.
+
+Annotations created this way can be shown using the "Show Annotations" iTerm command.
 
 ## Related
 
