@@ -45,3 +45,4 @@ expectType<string>(
 	ansiEscapes.image(new Buffer(1), {preserveAspectRatio: false})
 );
 expectType<string>(ansiEscapes.iTerm.setCwd('/foo/bar'));
+expectType<string>(ansiEscapes.iTerm.annotation('foo bar'));

@@ -25,6 +25,40 @@ declare namespace ansiEscapes {
 
 		readonly preserveAspectRatio?: boolean;
 	}
+
+	interface AnnotationOptions {
+		/**
+		Nonzero number of columns to annotate.
+
+		Default: The remainder of the line.
+		*/
+		readonly length?: number;
+
+		/**
+		Starting X coordinate.
+
+		Must be used with `y` and `length`.
+
+		Default: The cursor position
+		*/
+		readonly x?: number;
+
+		/**
+		Starting Y coordinate.
+
+		Must be used with `x` and `length`.
+
+		Default: Cursor position.
+		*/
+		readonly y?: number;
+
+		/**
+		Create a "hidden" annotation.
+		
+		Annotations created this way can be shown using the "Show Annotations" iTerm command.
+		*/
+		readonly isHidden?: boolean;
+	}
 }
 
 declare const ansiEscapes: {
@@ -193,6 +227,18 @@ declare const ansiEscapes: {
 		@param cwd - Current directory. Default: `process.cwd()`.
 		*/
 		setCwd(cwd: string): string;
+
+		/**
+		An annotation looks like this when shown:
+
+		![screenshot of iTerm annotation](https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png)
+
+		See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
+
+		@param message - The message to display within the annotation. The `|` character is disallowed and will be stripped.
+		@returns An escape code which will create an annotation when printed in iTerm2.
+		*/
+		annotation(message: string, options?: ansiEscapes.AnnotationOptions): string;
 	};
 
 	// TODO: remove this in the next major version
