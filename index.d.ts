@@ -235,7 +235,7 @@ declare const ansiEscapes: {
 
 		See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
 
-		@param message - Message to display within annotation. The `|` character is disallowed and will be stripped.
+		@param message - The message to display within the annotation. The `|` character is disallowed and will be stripped.
 		@returns An escape code which will create an annotation when printed in iTerm2.
 		*/
 		annotation(message: string, options?: ansiEscapes.AnnotationOptions): string;
