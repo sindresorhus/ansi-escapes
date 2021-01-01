@@ -1,4 +1,4 @@
-# ansi-escapes [![Build Status](https://travis-ci.org/sindresorhus/ansi-escapes.svg?branch=master)](https://travis-ci.org/sindresorhus/ansi-escapes)
+# ansi-escapes
 
 > [ANSI escape codes](http://www.termsys.demon.co.uk/vtansi.htm) for manipulating the terminal
 
