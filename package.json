@@ -46,7 +46,7 @@
 		"iterm2"
 	],
 	"dependencies": {
-		"type-fest": "^0.11.0"
+		"type-fest": "^0.21.3"
 	},
 	"devDependencies": {
 		"@types/node": "^13.7.7",
