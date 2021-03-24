@@ -34,15 +34,15 @@ expectType<string>(ansiEscapes.clearScreen);
 expectType<string>(ansiEscapes.clearTerminal);
 expectType<string>(ansiEscapes.beep);
 expectType<string>(ansiEscapes.link('foo', 'https://foo.bar'));
-expectType<string>(ansiEscapes.image(Buffer.from(1)));
-expectType<string>(ansiEscapes.image(Buffer.from(1), {width: 1}));
-expectType<string>(ansiEscapes.image(Buffer.from(1), {width: '1px'}));
-expectType<string>(ansiEscapes.image(Buffer.from(1), {width: 'auto'}));
-expectType<string>(ansiEscapes.image(Buffer.from(1), {height: 1}));
-expectType<string>(ansiEscapes.image(Buffer.from(1), {height: '1px'}));
-expectType<string>(ansiEscapes.image(Buffer.from(1), {height: 'auto'}));
+expectType<string>(ansiEscapes.image(Buffer.from('1')));
+expectType<string>(ansiEscapes.image(Buffer.from('1'), {width: 1}));
+expectType<string>(ansiEscapes.image(Buffer.from('1'), {width: '1px'}));
+expectType<string>(ansiEscapes.image(Buffer.from('1'), {width: 'auto'}));
+expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: 1}));
+expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: '1px'}));
+expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: 'auto'}));
 expectType<string>(
-	ansiEscapes.image(Buffer.from(1), {preserveAspectRatio: false})
+	ansiEscapes.image(Buffer.from('1'), {preserveAspectRatio: false})
 );
 expectType<string>(ansiEscapes.iTerm.setCwd('/foo/bar'));
 expectType<string>(ansiEscapes.iTerm.annotation('foo bar'));
