@@ -1,5 +1,5 @@
 import test from 'ava';
-import ansiEscapes from '.';
+import ansiEscapes from './index.js';
 
 test('main', t => {
 	t.true(Object.keys(ansiEscapes).length > 0);

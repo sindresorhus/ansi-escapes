@@ -1,13 +1,10 @@
-'use strict';
-const ansiEscapes = module.exports;
-// TODO: remove this in the next major version
-module.exports.default = ansiEscapes;
-
 const ESC = '\u001B[';
 const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
+
+const ansiEscapes = {};
 
 ansiEscapes.cursorTo = (x, y) => {
 	if (typeof x !== 'number') {
@@ -26,21 +23,21 @@ ansiEscapes.cursorMove = (x, y) => {
 		throw new TypeError('The `x` argument is required');
 	}
 
-	let ret = '';
+	let returnValue = '';
 
 	if (x < 0) {
-		ret += ESC + (-x) + 'D';
+		returnValue += ESC + (-x) + 'D';
 	} else if (x > 0) {
-		ret += ESC + x + 'C';
+		returnValue += ESC + x + 'C';
 	}
 
 	if (y < 0) {
-		ret += ESC + (-y) + 'A';
+		returnValue += ESC + (-y) + 'A';
 	} else if (y > 0) {
-		ret += ESC + y + 'B';
+		returnValue += ESC + y + 'B';
 	}
 
-	return ret;
+	return returnValue;
 };
 
 ansiEscapes.cursorUp = (count = 1) => ESC + count + 'A';
@@ -110,28 +107,28 @@ ansiEscapes.link = (text, url) => {
 };
 
 ansiEscapes.image = (buffer, options = {}) => {
-	let ret = `${OSC}1337;File=inline=1`;
+	let returnValue = `${OSC}1337;File=inline=1`;
 
 	if (options.width) {
-		ret += `;width=${options.width}`;
+		returnValue += `;width=${options.width}`;
 	}
 
 	if (options.height) {
-		ret += `;height=${options.height}`;
+		returnValue += `;height=${options.height}`;
 	}
 
 	if (options.preserveAspectRatio === false) {
-		ret += ';preserveAspectRatio=0';
+		returnValue += ';preserveAspectRatio=0';
 	}
 
-	return ret + ':' + buffer.toString('base64') + BEL;
+	return returnValue + ':' + buffer.toString('base64') + BEL;
 };
 
 ansiEscapes.iTerm = {
 	setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
 
 	annotation: (message, options = {}) => {
-		let ret = `${OSC}1337;`;
+		let returnValue = `${OSC}1337;`;
 
 		const hasX = typeof options.x !== 'undefined';
 		const hasY = typeof options.y !== 'undefined';
@@ -141,17 +138,19 @@ ansiEscapes.iTerm = {
 
 		message = message.replace(/\|/g, '');
 
-		ret += options.isHidden ? 'AddHiddenAnnotation=' : 'AddAnnotation=';
+		returnValue += options.isHidden ? 'AddHiddenAnnotation=' : 'AddAnnotation=';
 
 		if (options.length > 0) {
-			ret +=
+			returnValue +=
 					(hasX ?
 						[message, options.length, options.x, options.y] :
 						[options.length, message]).join('|');
 		} else {
-			ret += message;
+			returnValue += message;
 		}
 
-		return ret + BEL;
+		return returnValue + BEL;
 	}
 };
+
+export default ansiEscapes;

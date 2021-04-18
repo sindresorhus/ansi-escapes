@@ -1,64 +1,62 @@
-/// <reference types="node"/>
+/* eslint-disable @typescript-eslint/member-ordering */
 import {LiteralUnion} from 'type-fest';
 
-declare namespace ansiEscapes {
-	interface ImageOptions {
-		/**
-		The width is given as a number followed by a unit, or the word `'auto'`.
+export interface ImageOptions {
+	/**
+	The width is given as a number followed by a unit, or the word `'auto'`.
 
-		- `N`: N character cells.
-		- `Npx`: N pixels.
-		- `N%`: N percent of the session's width or height.
-		- `auto`: The image's inherent size will be used to determine an appropriate dimension.
-		*/
-		readonly width?: LiteralUnion<'auto', number | string>;
+	- `N`: N character cells.
+	- `Npx`: N pixels.
+	- `N%`: N percent of the session's width or height.
+	- `auto`: The image's inherent size will be used to determine an appropriate dimension.
+	*/
+	readonly width?: LiteralUnion<'auto', number | string>;
 
-		/**
-		The height is given as a number followed by a unit, or the word `'auto'`.
+	/**
+	The height is given as a number followed by a unit, or the word `'auto'`.
 
-		- `N`: N character cells.
-		- `Npx`: N pixels.
-		- `N%`: N percent of the session's width or height.
-		- `auto`: The image's inherent size will be used to determine an appropriate dimension.
-		*/
-		readonly height?: LiteralUnion<'auto', number | string>;
+	- `N`: N character cells.
+	- `Npx`: N pixels.
+	- `N%`: N percent of the session's width or height.
+	- `auto`: The image's inherent size will be used to determine an appropriate dimension.
+	*/
+	readonly height?: LiteralUnion<'auto', number | string>;
 
-		readonly preserveAspectRatio?: boolean;
-	}
+	readonly preserveAspectRatio?: boolean;
+}
 
-	interface AnnotationOptions {
-		/**
-		Nonzero number of columns to annotate.
+export interface AnnotationOptions {
+	/**
+	Nonzero number of columns to annotate.
 
-		Default: The remainder of the line.
-		*/
-		readonly length?: number;
+	Default: The remainder of the line.
+	*/
+	readonly length?: number;
 
-		/**
-		Starting X coordinate.
+	/**
+	Starting X coordinate.
 
-		Must be used with `y` and `length`.
+	Must be used with `y` and `length`.
 
-		Default: The cursor position
-		*/
-		readonly x?: number;
+	Default: The cursor position
+	*/
+	readonly x?: number;
 
-		/**
-		Starting Y coordinate.
+	/**
+	Starting Y coordinate.
 
-		Must be used with `x` and `length`.
+	Must be used with `x` and `length`.
 
-		Default: Cursor position.
-		*/
-		readonly y?: number;
+	Default: Cursor position.
+	*/
+	readonly y?: number;
 
-		/**
-		Create a "hidden" annotation.
+	/**
+	Create a "hidden" annotation.
 
-		Annotations created this way can be shown using the "Show Annotations" iTerm command.
-		*/
-		readonly isHidden?: boolean;
-	}
+	Annotations created this way can be shown using the "Show Annotations" iTerm command.
+	*/
+	readonly isHidden?: boolean;
 }
 
 declare const ansiEscapes: {
@@ -218,7 +216,7 @@ declare const ansiEscapes: {
 
 	@param buffer - Buffer of an image. Usually read in with `fs.readFile()`.
 	*/
-	image(buffer: Buffer, options?: ansiEscapes.ImageOptions): string;
+	image(buffer: Buffer, options?: ImageOptions): string;
 
 	iTerm: {
 		/**
@@ -238,11 +236,8 @@ declare const ansiEscapes: {
 		@param message - The message to display within the annotation. The `|` character is disallowed and will be stripped.
 		@returns An escape code which will create an annotation when printed in iTerm2.
 		*/
-		annotation(message: string, options?: ansiEscapes.AnnotationOptions): string;
+		annotation(message: string, options?: AnnotationOptions): string;
 	};
-
-	// TODO: remove this in the next major version
-	default: typeof ansiEscapes;
 };
 
-export = ansiEscapes;
+export default ansiEscapes;

@@ -11,7 +11,7 @@ $ npm install ansi-escapes
 ## Usage
 
 ```js
-const ansiEscapes = require('ansi-escapes');
+import ansiEscapes from 'ansi-escapes';
 
 // Moves the cursor two rows up and to the left
 process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);

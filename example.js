@@ -1,6 +1,5 @@
-'use strict';
-const fs = require('fs');
-const ansiEscapes = require('.');
+import fs from 'fs';
+import ansiEscapes from './index.js';
 
 console.log(ansiEscapes.image(fs.readFileSync('fixture.jpg'), {width: 15}));
 

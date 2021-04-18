@@ -1,5 +1,5 @@
 import {expectType} from 'tsd';
-import ansiEscapes = require('.');
+import ansiEscapes from './index.js';
 
 expectType<string>(ansiEscapes.cursorTo(0));
 expectType<string>(ansiEscapes.cursorTo(0, 1));
