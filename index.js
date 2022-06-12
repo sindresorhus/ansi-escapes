@@ -15,7 +15,7 @@ ansiEscapes.cursorTo = (x, y) => {
 		return ESC + (x + 1) + 'G';
 	}
 
-	return ESC + (y + 1) + ';' + (x + 1) + 'H';
+	return ESC + (y + 1) + SEP + (x + 1) + 'H';
 };
 
 ansiEscapes.cursorMove = (x, y) => {
