@@ -1,7 +1,10 @@
+import process from 'node:process';
+
 const ESC = '\u001B[';
 const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
+
 const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
 
 const ansiEscapes = {};
@@ -79,32 +82,30 @@ ansiEscapes.scrollDown = ESC + 'T';
 
 ansiEscapes.clearScreen = '\u001Bc';
 
-ansiEscapes.clearTerminal = process.platform === 'win32' ?
-	`${ansiEscapes.eraseScreen}${ESC}0f` :
+ansiEscapes.clearTerminal = process.platform === 'win32'
+	? `${ansiEscapes.eraseScreen}${ESC}0f`
 	// 1. Erases the screen (Only done in case `2` is not supported)
 	// 2. Erases the whole screen including scrollback buffer
 	// 3. Moves cursor to the top-left position
 	// More info: https://www.real-world-systems.com/docs/ANSIcode.html
-	`${ansiEscapes.eraseScreen}${ESC}3J${ESC}H`;
+	: `${ansiEscapes.eraseScreen}${ESC}3J${ESC}H`;
 
 ansiEscapes.beep = BEL;
 
-ansiEscapes.link = (text, url) => {
-	return [
-		OSC,
-		'8',
-		SEP,
-		SEP,
-		url,
-		BEL,
-		text,
-		OSC,
-		'8',
-		SEP,
-		SEP,
-		BEL
-	].join('');
-};
+ansiEscapes.link = (text, url) => [
+	OSC,
+	'8',
+	SEP,
+	SEP,
+	url,
+	BEL,
+	text,
+	OSC,
+	'8',
+	SEP,
+	SEP,
+	BEL,
+].join('');
 
 ansiEscapes.image = (buffer, options = {}) => {
 	let returnValue = `${OSC}1337;File=inline=1`;
@@ -127,7 +128,7 @@ ansiEscapes.image = (buffer, options = {}) => {
 ansiEscapes.iTerm = {
 	setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
 
-	annotation: (message, options = {}) => {
+	annotation(message, options = {}) {
 		let returnValue = `${OSC}1337;`;
 
 		const hasX = typeof options.x !== 'undefined';
@@ -141,16 +142,17 @@ ansiEscapes.iTerm = {
 		returnValue += options.isHidden ? 'AddHiddenAnnotation=' : 'AddAnnotation=';
 
 		if (options.length > 0) {
-			returnValue +=
-					(hasX ?
-						[message, options.length, options.x, options.y] :
-						[options.length, message]).join('|');
+			returnValue += (
+				hasX
+					? [message, options.length, options.x, options.y]
+					: [options.length, message]
+			).join('|');
 		} else {
 			returnValue += message;
 		}
 
 		return returnValue + BEL;
-	}
+	},
 };
 
 export default ansiEscapes;

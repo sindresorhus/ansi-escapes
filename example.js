@@ -1,4 +1,5 @@
-import fs from 'fs';
+import process from 'node:process';
+import fs from 'node:fs';
 import ansiEscapes from './index.js';
 
 console.log(ansiEscapes.image(fs.readFileSync('fixture.jpg'), {width: 15}));

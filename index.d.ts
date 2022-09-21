@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import {LiteralUnion} from 'type-fest';
+import type {Buffer} from 'node:buffer';
+import type {LiteralUnion} from 'type-fest';
 
-export interface ImageOptions {
+export type ImageOptions = {
 	/**
 	The width is given as a number followed by a unit, or the word `'auto'`.
 
@@ -22,10 +23,13 @@ export interface ImageOptions {
 	*/
 	readonly height?: LiteralUnion<'auto', number | string>;
 
+	/**
+	@default true
+	*/
 	readonly preserveAspectRatio?: boolean;
-}
+};
 
-export interface AnnotationOptions {
+export type AnnotationOptions = {
 	/**
 	Nonzero number of columns to annotate.
 
@@ -57,7 +61,7 @@ export interface AnnotationOptions {
 	Annotations created this way can be shown using the "Show Annotations" iTerm command.
 	*/
 	readonly isHidden?: boolean;
-}
+};
 
 declare const ansiEscapes: {
 	/**

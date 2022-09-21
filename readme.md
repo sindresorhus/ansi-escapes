@@ -4,8 +4,8 @@
 
 ## Install
 
-```
-$ npm install ansi-escapes
+```sh
+npm install ansi-escapes
 ```
 
 ## Usage
@@ -231,15 +231,3 @@ Annotations created this way can be shown using the "Show Annotations" iTerm com
 ## Related
 
 - [ansi-styles](https://github.com/chalk/ansi-styles) - ANSI escape codes for styling strings in the terminal
-
----
-
-<div align="center">
-	<b>
-		<a href="https://tidelift.com/subscription/pkg/npm-ansi-escapes?utm_source=npm-ansi-escapes&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
-	</b>
-	<br>
-	<sub>
-		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
-	</sub>
-</div>

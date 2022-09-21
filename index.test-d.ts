@@ -1,3 +1,4 @@
+import {Buffer} from 'node:buffer';
 import {expectType} from 'tsd';
 import ansiEscapes from './index.js';
 
@@ -42,7 +43,7 @@ expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: 1}));
 expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: '1px'}));
 expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: 'auto'}));
 expectType<string>(
-	ansiEscapes.image(Buffer.from('1'), {preserveAspectRatio: false})
+	ansiEscapes.image(Buffer.from('1'), {preserveAspectRatio: false}),
 );
 expectType<string>(ansiEscapes.iTerm.setCwd('/foo/bar'));
 expectType<string>(ansiEscapes.iTerm.annotation('foo bar'));

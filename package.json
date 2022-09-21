@@ -12,8 +12,9 @@
 	},
 	"type": "module",
 	"exports": "./index.js",
+	"types": "./index.d.ts",
 	"engines": {
-		"node": ">=12"
+		"node": ">=14.16"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -48,12 +49,12 @@
 		"iterm2"
 	],
 	"dependencies": {
-		"type-fest": "^1.0.2"
+		"type-fest": "^3.0.0"
 	},
 	"devDependencies": {
-		"@types/node": "^14.14.41",
-		"ava": "^3.15.0",
-		"tsd": "^0.14.0",
-		"xo": "^0.38.2"
+		"@types/node": "^18.7.18",
+		"ava": "^4.3.3",
+		"tsd": "^0.24.1",
+		"xo": "^0.52.3"
 	}
 }
