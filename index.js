@@ -5,6 +5,7 @@ const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 
+/* global window */
 const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
 let isTerminalApp_;
