@@ -1,21 +1,26 @@
+import process from 'node:process';
+
 const ESC = '\u001B[';
 const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 
-const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
+const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
 let isTerminalApp_;
 let platform_ = 'browser';
-let cwdFunc_ = () => {throw new Error('NodeJS.Process.cwd() doesn\'t work in Browser.');}
+let cwdFunc_ = () => {
+	throw new Error('NodeJS.Process.cwd() doesn\'t work in Browser.');
+};
+
 if (isBrowser) {
-  isTerminalApp_ = false;
+	isTerminalApp_ = false;
 } else {
-	const process = require('node:process');
 	isTerminalApp_ = process.env.TERM_PROGRAM === 'Apple_Terminal';
 	platform_ = process.platform;
 	cwdFunc_ = process.cwd;
 }
+
 const isTerminalApp = isTerminalApp_;
 const platform = platform_;
 const cwdFunc = cwdFunc_;
