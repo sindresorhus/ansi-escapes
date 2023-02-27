@@ -1,11 +1,24 @@
-import process from 'node:process';
-
 const ESC = '\u001B[';
 const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 
-const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
+const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
+
+let isTerminalApp_;
+let platform_ = 'browser';
+let cwdFunc_ = () => {throw new Error('NodeJS.Process.cwd() doesn\'t work in Browser.');}
+if (isBrowser) {
+  isTerminalApp_ = false;
+} else {
+	const process = require('node:process');
+	isTerminalApp_ = process.env.TERM_PROGRAM === 'Apple_Terminal';
+	platform_ = process.platform;
+	cwdFunc_ = process.cwd;
+}
+const isTerminalApp = isTerminalApp_;
+const platform = platform_;
+const cwdFunc = cwdFunc_;
 
 const ansiEscapes = {};
 
@@ -82,7 +95,7 @@ ansiEscapes.scrollDown = ESC + 'T';
 
 ansiEscapes.clearScreen = '\u001Bc';
 
-ansiEscapes.clearTerminal = process.platform === 'win32'
+ansiEscapes.clearTerminal = platform === 'win32'
 	? `${ansiEscapes.eraseScreen}${ESC}0f`
 	// 1. Erases the screen (Only done in case `2` is not supported)
 	// 2. Erases the whole screen including scrollback buffer
@@ -126,7 +139,7 @@ ansiEscapes.image = (buffer, options = {}) => {
 };
 
 ansiEscapes.iTerm = {
-	setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
+	setCwd: (cwd = cwdFunc()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
 
 	annotation(message, options = {}) {
 		let returnValue = `${OSC}1337;`;
