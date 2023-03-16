@@ -8,23 +8,11 @@ const SEP = ';';
 /* global window */
 const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
-let isTerminalApp_;
-let platform_ = 'browser';
-let cwdFunc_ = () => {
-	throw new Error('NodeJS.Process.cwd() doesn\'t work in Browser.');
-};
-
-if (isBrowser) {
-	isTerminalApp_ = false;
-} else {
-	isTerminalApp_ = process.env.TERM_PROGRAM === 'Apple_Terminal';
-	platform_ = process.platform;
-	cwdFunc_ = process.cwd;
-}
-
-const isTerminalApp = isTerminalApp_;
-const platform = platform_;
-const cwdFunc = cwdFunc_;
+const isTerminalApp = isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
+const isWindows = isBrowser && process.platform === 'win32';
+const cwdFunc = isBrowser ? () => {
+	throw new Error('`process.cwd()` only works in Node.js, not the browser.');
+} : process.cwd;
 
 const ansiEscapes = {};
 
@@ -101,7 +89,7 @@ ansiEscapes.scrollDown = ESC + 'T';
 
 ansiEscapes.clearScreen = '\u001Bc';
 
-ansiEscapes.clearTerminal = platform === 'win32'
+ansiEscapes.clearTerminal = isWindows
 	? `${ansiEscapes.eraseScreen}${ESC}0f`
 	// 1. Erases the screen (Only done in case `2` is not supported)
 	// 2. Erases the whole screen including scrollback buffer
