@@ -10,8 +10,6 @@ npm install ansi-escapes
 
 ## Usage
 
-### Use within terminal
-
 ```js
 import ansiEscapes from 'ansi-escapes';
 
@@ -20,18 +18,17 @@ process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 //=> '\u001B[2A\u001B[1000D'
 ```
 
-### Use with xterm.js
+**You can also use it in the browser with Xterm.js:**
 
 ```js
 import ansiEscapes from 'ansi-escapes';
-import { Terminal } from 'xterm';
+import {Terminal} from 'xterm';
 import 'xterm/css/xterm.css';
 
-...
-const term = new Terminal({...});
-...
+const terminal = new Terminal({…});
+
 // Moves the cursor two rows up and to the left
-term.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
+terminal.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 //=> '\u001B[2A\u001B[1000D'
 ```
 
