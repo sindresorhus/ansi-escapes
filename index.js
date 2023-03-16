@@ -8,8 +8,8 @@ const SEP = ';';
 /* global window */
 const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
-const isTerminalApp = isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
-const isWindows = isBrowser && process.platform === 'win32';
+const isTerminalApp = !isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
+const isWindows = !isBrowser && process.platform === 'win32';
 const cwdFunction = isBrowser ? () => {
 	throw new Error('`process.cwd()` only works in Node.js, not the browser.');
 } : process.cwd;
