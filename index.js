@@ -10,7 +10,7 @@ const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'u
 
 const isTerminalApp = isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
 const isWindows = isBrowser && process.platform === 'win32';
-const cwdFunc = isBrowser ? () => {
+const cwdFunction = isBrowser ? () => {
 	throw new Error('`process.cwd()` only works in Node.js, not the browser.');
 } : process.cwd;
 
@@ -133,7 +133,7 @@ ansiEscapes.image = (buffer, options = {}) => {
 };
 
 ansiEscapes.iTerm = {
-	setCwd: (cwd = cwdFunc()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
+	setCwd: (cwd = cwdFunction()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
 
 	annotation(message, options = {}) {
 		let returnValue = `${OSC}1337;`;
