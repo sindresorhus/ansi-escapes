@@ -5,7 +5,14 @@ const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 
-const isTerminalApp = process.env.TERM_PROGRAM === 'Apple_Terminal';
+/* global window */
+const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+
+const isTerminalApp = !isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
+const isWindows = !isBrowser && process.platform === 'win32';
+const cwdFunction = isBrowser ? () => {
+	throw new Error('`process.cwd()` only works in Node.js, not the browser.');
+} : process.cwd;
 
 const ansiEscapes = {};
 
@@ -82,7 +89,7 @@ ansiEscapes.scrollDown = ESC + 'T';
 
 ansiEscapes.clearScreen = '\u001Bc';
 
-ansiEscapes.clearTerminal = process.platform === 'win32'
+ansiEscapes.clearTerminal = isWindows
 	? `${ansiEscapes.eraseScreen}${ESC}0f`
 	// 1. Erases the screen (Only done in case `2` is not supported)
 	// 2. Erases the whole screen including scrollback buffer
@@ -126,7 +133,7 @@ ansiEscapes.image = (buffer, options = {}) => {
 };
 
 ansiEscapes.iTerm = {
-	setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
+	setCwd: (cwd = cwdFunction()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
 
 	annotation(message, options = {}) {
 		let returnValue = `${OSC}1337;`;

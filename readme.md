@@ -18,6 +18,20 @@ process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 //=> '\u001B[2A\u001B[1000D'
 ```
 
+**You can also use it in the browser with Xterm.js:**
+
+```js
+import ansiEscapes from 'ansi-escapes';
+import {Terminal} from 'xterm';
+import 'xterm/css/xterm.css';
+
+const terminal = new Terminal({…});
+
+// Moves the cursor two rows up and to the left
+terminal.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
+//=> '\u001B[2A\u001B[1000D'
+```
+
 ## API
 
 ### cursorTo(x, y?)
