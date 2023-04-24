@@ -134,6 +134,14 @@ Clear the terminal screen. (Viewport)
 
 Clear the whole terminal, including scrollback buffer. (Not just the visible part of it)
 
+### enterAlternativeScreen
+
+Enter the [alternative screen](https://terminalguide.namepad.de/mode/p47/).
+
+### exitAlternativeScreen
+
+Exit the [alternative screen](https://terminalguide.namepad.de/mode/p47/), assuming `enterAlternativeScreen` was called before.
+
 ### beep
 
 Output a beeping sound.

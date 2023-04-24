@@ -200,6 +200,16 @@ declare const ansiEscapes: {
 	clearTerminal: string;
 
 	/**
+	Enter the [alternative screen](https://terminalguide.namepad.de/mode/p47/).
+	*/
+	enterAlternativeScreen: string;
+
+	/**
+	Exit the [alternative screen](https://terminalguide.namepad.de/mode/p47/), assuming `enterAlternativeScreen` was called before.
+	*/
+	exitAlternativeScreen: string;
+
+	/**
 	Output a beeping sound.
 	*/
 	beep: string;
