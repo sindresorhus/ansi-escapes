@@ -1,6 +1,6 @@
 # ansi-escapes
 
-> [ANSI escape codes](http://www.termsys.demon.co.uk/vtansi.htm) for manipulating the terminal
+> [ANSI escape codes](https://www2.ccs.neu.edu/research/gpc/VonaUtils/vona/terminal/vtansi.htm) for manipulating the terminal
 
 ## Install
 
