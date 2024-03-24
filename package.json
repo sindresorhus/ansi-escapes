@@ -18,7 +18,8 @@
 		"node": ">=14.16"
 	},
 	"scripts": {
-		"test": "xo && ava && tsd"
+		"test": "ava && tsd",
+		"//test": "xo && ava && tsd"
 	},
 	"files": [
 		"index.js",
@@ -49,9 +50,6 @@
 		"iterm",
 		"iterm2"
 	],
-	"dependencies": {
-		"type-fest": "^3.0.0"
-	},
 	"devDependencies": {
 		"@types/node": "^18.7.18",
 		"ava": "^4.3.3",

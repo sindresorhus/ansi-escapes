@@ -1,6 +1,21 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import type {Buffer} from 'node:buffer';
-import type {LiteralUnion} from 'type-fest';
+
+// From https://github.com/sindresorhus/type-fest
+type Primitive =
+	| null // eslint-disable-line @typescript-eslint/ban-types
+	| undefined
+	| string
+	| number
+	| boolean
+	| symbol
+	| bigint;
+
+type LiteralUnion<
+	LiteralType,
+	BaseType extends Primitive,
+> = LiteralType | (BaseType & Record<never, never>);
+// -
 
 export type ImageOptions = {
 	/**
