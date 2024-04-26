@@ -1,6 +1,5 @@
-import { Buffer } from "node:buffer";
-import { expectType } from "tsd";
-
+import {Buffer} from 'node:buffer';
+import {expectType} from 'tsd';
 import {
 	beep,
 	clearScreen,
@@ -33,7 +32,7 @@ import {
 	link,
 	scrollDown,
 	scrollUp,
-} from "./index.js";
+} from './index.js';
 
 expectType<string>(cursorTo(0));
 expectType<string>(cursorTo(0, 1));
@@ -69,14 +68,14 @@ expectType<string>(clearTerminal);
 expectType<string>(enterAlternativeScreen);
 expectType<string>(exitAlternativeScreen);
 expectType<string>(beep);
-expectType<string>(link("foo", "https://foo.bar"));
-expectType<string>(image(Buffer.from("1")));
-expectType<string>(image(Buffer.from("1"), { width: 1 }));
-expectType<string>(image(Buffer.from("1"), { width: "1px" }));
-expectType<string>(image(Buffer.from("1"), { width: "auto" }));
-expectType<string>(image(Buffer.from("1"), { height: 1 }));
-expectType<string>(image(Buffer.from("1"), { height: "1px" }));
-expectType<string>(image(Buffer.from("1"), { height: "auto" }));
-expectType<string>(image(Buffer.from("1"), { preserveAspectRatio: false }));
-expectType<string>(iTerm.setCwd("/foo/bar"));
-expectType<string>(iTerm.annotation("foo bar"));
+expectType<string>(link('foo', 'https://foo.bar'));
+expectType<string>(image(Buffer.from('1')));
+expectType<string>(image(Buffer.from('1'), {width: 1}));
+expectType<string>(image(Buffer.from('1'), {width: '1px'}));
+expectType<string>(image(Buffer.from('1'), {width: 'auto'}));
+expectType<string>(image(Buffer.from('1'), {height: 1}));
+expectType<string>(image(Buffer.from('1'), {height: '1px'}));
+expectType<string>(image(Buffer.from('1'), {height: 'auto'}));
+expectType<string>(image(Buffer.from('1'), {preserveAspectRatio: false}));
+expectType<string>(iTerm.setCwd('/foo/bar'));
+expectType<string>(iTerm.annotation('foo bar'));

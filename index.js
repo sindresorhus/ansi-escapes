@@ -1,89 +1,90 @@
-import process from "node:process";
+import process from 'node:process';
 
-const ESC = "\u001B[";
-const OSC = "\u001B]";
-const BEL = "\u0007";
-const SEP = ";";
+const ESC = '\u001B[';
+const OSC = '\u001B]';
+const BEL = '\u0007';
+const SEP = ';';
 
 /* global window */
-const isBrowser =
-	typeof window !== "undefined" && typeof window.document !== "undefined";
+const isBrowser
+	= typeof window !== 'undefined' && window.document !== undefined;
 
-const isTerminalApp =
-	!isBrowser && process.env.TERM_PROGRAM === "Apple_Terminal";
-const isWindows = !isBrowser && process.platform === "win32";
+const isTerminalApp
+	= !isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
+const isWindows = !isBrowser && process.platform === 'win32';
 
 const cwdFunction = isBrowser
 	? () => {
-			throw new Error(
-				"`process.cwd()` only works in Node.js, not the browser."
-			);
-	  }
+		throw new Error(
+			'`process.cwd()` only works in Node.js, not the browser.',
+		);
+	}
 	: process.cwd;
 
 export function cursorTo(x, y) {
-	if (typeof x !== "number") {
-		throw new TypeError("The `x` argument is required");
+	if (typeof x !== 'number') {
+		throw new TypeError('The `x` argument is required');
 	}
 
-	if (typeof y !== "number") {
-		return ESC + (x + 1) + "G";
+	if (typeof y !== 'number') {
+		return ESC + (x + 1) + 'G';
 	}
 
-	return ESC + (y + 1) + SEP + (x + 1) + "H";
+	return ESC + (y + 1) + SEP + (x + 1) + 'H';
 }
 
 export function cursorMove(x, y) {
-	if (typeof x !== "number") {
-		throw new TypeError("The `x` argument is required");
+	if (typeof x !== 'number') {
+		throw new TypeError('The `x` argument is required');
 	}
 
-	let returnValue = "";
+	let returnValue = '';
 
 	if (x < 0) {
-		returnValue += ESC + -x + "D";
+		returnValue += ESC + -x + 'D';
 	} else if (x > 0) {
-		returnValue += ESC + x + "C";
+		returnValue += ESC + x + 'C';
 	}
 
 	if (y < 0) {
-		returnValue += ESC + -y + "A";
+		returnValue += ESC + -y + 'A';
 	} else if (y > 0) {
-		returnValue += ESC + y + "B";
+		returnValue += ESC + y + 'B';
 	}
 
 	return returnValue;
 }
 
 export function cursorUp(count = 1) {
-	return ESC + count + "A";
-	0;
+	return ESC + count + 'A';
 }
-0;
+
 export function cursorDown(count = 1) {
-	return ESC + count + "B";
+	return ESC + count + 'B';
 }
+
 export function cursorForward(count = 1) {
-	return ESC + count + "C";
+	return ESC + count + 'C';
 }
+
 export function cursorBackward(count = 1) {
-	return ESC + count + "D";
+	return ESC + count + 'D';
 }
 
-export const cursorLeft = ESC + "G";
-export const cursorSavePosition = isTerminalApp ? "\u001B7" : ESC + "s";
-export const cursorRestorePosition = isTerminalApp ? "\u001B8" : ESC + "u";
-export const cursorGetPosition = ESC + "6n";
-export const cursorNextLine = ESC + "E";
-export const cursorPrevLine = ESC + "F";
-export const cursorHide = ESC + "?25l";
-export const cursorShow = ESC + "?25h";
+export const cursorLeft = ESC + 'G';
+export const cursorSavePosition = isTerminalApp ? '\u001B7' : ESC + 's';
+export const cursorRestorePosition = isTerminalApp ? '\u001B8' : ESC + 'u';
+export const cursorGetPosition = ESC + '6n';
+export const cursorNextLine = ESC + 'E';
+export const cursorPrevLine = ESC + 'F';
+export const cursorHide = ESC + '?25l';
+export const cursorShow = ESC + '?25h';
 
-export const eraseLines = (count) => {
-	let clear = "";
+export const eraseLines = count => {
+	let clear = '';
 
 	for (let i = 0; i < count; i++) {
-		clear += eraseLine + (i < count - 1 ? cursorUp() : "");
+		clear += eraseLine + (i < count - 1 ? cursorUp() : '');
 	}
 
 	if (count) {
@@ -93,32 +94,32 @@ export const eraseLines = (count) => {
 	return clear;
 };
 
-export const eraseEndLine = ESC + "K";
-export const eraseStartLine = ESC + "1K";
-export const eraseLine = ESC + "2K";
-export const eraseDown = ESC + "J";
-export const eraseUp = ESC + "1J";
-export const eraseScreen = ESC + "2J";
-export const scrollUp = ESC + "S";
-export const scrollDown = ESC + "T";
+export const eraseEndLine = ESC + 'K';
+export const eraseStartLine = ESC + '1K';
+export const eraseLine = ESC + '2K';
+export const eraseDown = ESC + 'J';
+export const eraseUp = ESC + '1J';
+export const eraseScreen = ESC + '2J';
+export const scrollUp = ESC + 'S';
+export const scrollDown = ESC + 'T';
 
-export const clearScreen = "\u001Bc";
+export const clearScreen = '\u001Bc';
 
 export const clearTerminal = isWindows
 	? `${eraseScreen}${ESC}0f`
 	: // 1. Erases the screen (Only done in case `2` is not supported)
-	  // 2. Erases the whole screen including scrollback buffer
-	  // 3. Moves cursor to the top-left position
-	  // More info: https://www.real-world-systems.com/docs/ANSIcode.html
-	  `${eraseScreen}${ESC}3J${ESC}H`;
+	 	// 2. Erases the whole screen including scrollback buffer
+	 	// 3. Moves cursor to the top-left position
+	 	// More info: https://www.real-world-systems.com/docs/ANSIcode.html
+	 	`${eraseScreen}${ESC}3J${ESC}H`;
 
-export const enterAlternativeScreen = ESC + "?1049h";
-export const exitAlternativeScreen = ESC + "?1049l";
+export const enterAlternativeScreen = ESC + '?1049h';
+export const exitAlternativeScreen = ESC + '?1049l';
 
 export const beep = BEL;
 
 export function link(text, url) {
-	return [OSC, "8", SEP, SEP, url, BEL, text, OSC, "8", SEP, SEP, BEL].join("");
+	return [OSC, '8', SEP, SEP, url, BEL, text, OSC, '8', SEP, SEP, BEL].join('');
 }
 
 export function image(buffer, options = {}) {
@@ -133,10 +134,10 @@ export function image(buffer, options = {}) {
 	}
 
 	if (options.preserveAspectRatio === false) {
-		returnValue += ";preserveAspectRatio=0";
+		returnValue += ';preserveAspectRatio=0';
 	}
 
-	return returnValue + ":" + buffer.toString("base64") + BEL;
+	return returnValue + ':' + buffer.toString('base64') + BEL;
 }
 
 export const iTerm = {
@@ -145,27 +146,27 @@ export const iTerm = {
 	annotation(message, options = {}) {
 		let returnValue = `${OSC}1337;`;
 
-		const hasX = typeof options.x !== "undefined";
-		const hasY = typeof options.y !== "undefined";
+		const hasX = options.x !== undefined;
+		const hasY = options.y !== undefined;
 		if (
-			(hasX || hasY) &&
-			!(hasX && hasY && typeof options.length !== "undefined")
+			(hasX || hasY)
+			&& !(hasX && hasY && options.length !== undefined)
 		) {
 			throw new Error(
-				"`x`, `y` and `length` must be defined when `x` or `y` is defined"
+				'`x`, `y` and `length` must be defined when `x` or `y` is defined',
 			);
 		}
 
-		message = message.replace(/\|/g, "");
+		message = message.replaceAll('|', '');
 
-		returnValue += options.isHidden ? "AddHiddenAnnotation=" : "AddAnnotation=";
+		returnValue += options.isHidden ? 'AddHiddenAnnotation=' : 'AddAnnotation=';
 
 		if (options.length > 0) {
 			returnValue += (
 				hasX
 					? [message, options.length, options.x, options.y]
 					: [options.length, message]
-			).join("|");
+			).join('|');
 		} else {
 			returnValue += message;
 		}
