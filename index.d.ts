@@ -1,4 +1,3 @@
-
 import type {Buffer} from 'node:buffer';
 
 // From https://github.com/sindresorhus/type-fest

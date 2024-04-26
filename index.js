@@ -107,11 +107,11 @@ export const clearScreen = '\u001Bc';
 
 export const clearTerminal = isWindows
 	? `${eraseScreen}${ESC}0f`
-	: // 1. Erases the screen (Only done in case `2` is not supported)
-	 	// 2. Erases the whole screen including scrollback buffer
-	 	// 3. Moves cursor to the top-left position
-	 	// More info: https://www.real-world-systems.com/docs/ANSIcode.html
-	 	`${eraseScreen}${ESC}3J${ESC}H`;
+	// 1. Erases the screen (Only done in case `2` is not supported)
+	// 2. Erases the whole screen including scrollback buffer
+	// 3. Moves cursor to the top-left position
+	// More info: https://www.real-world-systems.com/docs/ANSIcode.html
+	:	`${eraseScreen}${ESC}3J${ESC}H`;
 
 export const enterAlternativeScreen = ESC + '?1049h';
 export const exitAlternativeScreen = ESC + '?1049l';
