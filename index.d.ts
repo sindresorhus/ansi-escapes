@@ -264,6 +264,39 @@ export namespace iTerm {
   */
 	function annotation(message: string, options?: AnnotationOptions): string;
 }
-declare const ansiEscapes: typeof import('./index');
+
+declare const ansiEscapes: {
+  beep: typeof beep;
+  clearScreen: typeof clearScreen;
+  clearTerminal: typeof clearTerminal;
+  cursorBackward: typeof cursorBackward;
+  cursorDown: typeof cursorDown;
+  cursorForward: typeof cursorForward;
+	cursorGetPosition: typeof cursorGetPosition;
+	cursorHide: typeof cursorHide;
+	cursorLeft: typeof cursorLeft;
+	cursorMove: typeof cursorMove;
+	cursorNextLine: typeof cursorNextLine;
+	cursorPrevLine: typeof cursorPrevLine;
+	cursorRestorePosition: typeof cursorRestorePosition;
+  cursorSavePosition: typeof cursorSavePosition;
+  cursorShow: typeof cursorShow;
+  cursorTo: typeof cursorTo;
+  cursorUp: typeof cursorUp;
+  enterAlternativeScreen: typeof enterAlternativeScreen;
+  eraseDown: typeof eraseDown;
+  eraseEndLine: typeof eraseEndLine;
+  eraseLine: typeof eraseLine;
+  eraseLines: typeof eraseLines;
+  eraseScreen: typeof eraseScreen;
+  eraseStartLine: typeof eraseStartLine;
+  eraseUp: typeof eraseUp;
+  exitAlternativeScreen: typeof exitAlternativeScreen;
+  image: typeof image;
+  iTerm: typeof iTerm;
+  link: typeof link;
+  scrollDown: typeof scrollDown;
+  scrollUp: typeof scrollUp;
+};
 
 export default ansiEscapes
