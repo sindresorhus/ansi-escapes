@@ -1,51 +1,82 @@
-import {Buffer} from 'node:buffer';
-import {expectType} from 'tsd';
-import ansiEscapes from './index.js';
+import { Buffer } from "node:buffer";
+import { expectType } from "tsd";
 
-expectType<string>(ansiEscapes.cursorTo(0));
-expectType<string>(ansiEscapes.cursorTo(0, 1));
-expectType<string>(ansiEscapes.cursorMove(0));
-expectType<string>(ansiEscapes.cursorMove(0, 1));
-expectType<string>(ansiEscapes.cursorUp());
-expectType<string>(ansiEscapes.cursorUp(1));
-expectType<string>(ansiEscapes.cursorDown());
-expectType<string>(ansiEscapes.cursorDown(1));
-expectType<string>(ansiEscapes.cursorForward());
-expectType<string>(ansiEscapes.cursorForward(1));
-expectType<string>(ansiEscapes.cursorBackward());
-expectType<string>(ansiEscapes.cursorBackward(1));
-expectType<string>(ansiEscapes.cursorLeft);
-expectType<string>(ansiEscapes.cursorSavePosition);
-expectType<string>(ansiEscapes.cursorRestorePosition);
-expectType<string>(ansiEscapes.cursorGetPosition);
-expectType<string>(ansiEscapes.cursorNextLine);
-expectType<string>(ansiEscapes.cursorPrevLine);
-expectType<string>(ansiEscapes.cursorHide);
-expectType<string>(ansiEscapes.cursorShow);
-expectType<string>(ansiEscapes.eraseLines(2));
-expectType<string>(ansiEscapes.eraseEndLine);
-expectType<string>(ansiEscapes.eraseStartLine);
-expectType<string>(ansiEscapes.eraseLine);
-expectType<string>(ansiEscapes.eraseDown);
-expectType<string>(ansiEscapes.eraseUp);
-expectType<string>(ansiEscapes.eraseScreen);
-expectType<string>(ansiEscapes.scrollUp);
-expectType<string>(ansiEscapes.scrollDown);
-expectType<string>(ansiEscapes.clearScreen);
-expectType<string>(ansiEscapes.clearTerminal);
-expectType<string>(ansiEscapes.enterAlternativeScreen);
-expectType<string>(ansiEscapes.exitAlternativeScreen);
-expectType<string>(ansiEscapes.beep);
-expectType<string>(ansiEscapes.link('foo', 'https://foo.bar'));
-expectType<string>(ansiEscapes.image(Buffer.from('1')));
-expectType<string>(ansiEscapes.image(Buffer.from('1'), {width: 1}));
-expectType<string>(ansiEscapes.image(Buffer.from('1'), {width: '1px'}));
-expectType<string>(ansiEscapes.image(Buffer.from('1'), {width: 'auto'}));
-expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: 1}));
-expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: '1px'}));
-expectType<string>(ansiEscapes.image(Buffer.from('1'), {height: 'auto'}));
-expectType<string>(
-	ansiEscapes.image(Buffer.from('1'), {preserveAspectRatio: false}),
-);
-expectType<string>(ansiEscapes.iTerm.setCwd('/foo/bar'));
-expectType<string>(ansiEscapes.iTerm.annotation('foo bar'));
+import {
+	beep,
+	clearScreen,
+	clearTerminal,
+	cursorBackward,
+	cursorDown,
+	cursorForward,
+	cursorGetPosition,
+	cursorHide,
+	cursorLeft,
+	cursorMove,
+	cursorNextLine,
+	cursorPrevLine,
+	cursorRestorePosition,
+	cursorSavePosition,
+	cursorShow,
+	cursorTo,
+	cursorUp,
+	enterAlternativeScreen,
+	eraseDown,
+	eraseEndLine,
+	eraseLine,
+	eraseLines,
+	eraseScreen,
+	eraseStartLine,
+	eraseUp,
+	exitAlternativeScreen,
+	iTerm,
+	image,
+	link,
+	scrollDown,
+	scrollUp,
+} from "./index.js";
+
+expectType<string>(cursorTo(0));
+expectType<string>(cursorTo(0, 1));
+expectType<string>(cursorMove(0));
+expectType<string>(cursorMove(0, 1));
+expectType<string>(cursorUp());
+expectType<string>(cursorUp(1));
+expectType<string>(cursorDown());
+expectType<string>(cursorDown(1));
+expectType<string>(cursorForward());
+expectType<string>(cursorForward(1));
+expectType<string>(cursorBackward());
+expectType<string>(cursorBackward(1));
+expectType<string>(cursorLeft);
+expectType<string>(cursorSavePosition);
+expectType<string>(cursorRestorePosition);
+expectType<string>(cursorGetPosition);
+expectType<string>(cursorNextLine);
+expectType<string>(cursorPrevLine);
+expectType<string>(cursorHide);
+expectType<string>(cursorShow);
+expectType<string>(eraseLines(2));
+expectType<string>(eraseEndLine);
+expectType<string>(eraseStartLine);
+expectType<string>(eraseLine);
+expectType<string>(eraseDown);
+expectType<string>(eraseUp);
+expectType<string>(eraseScreen);
+expectType<string>(scrollUp);
+expectType<string>(scrollDown);
+expectType<string>(clearScreen);
+expectType<string>(clearTerminal);
+expectType<string>(enterAlternativeScreen);
+expectType<string>(exitAlternativeScreen);
+expectType<string>(beep);
+expectType<string>(link("foo", "https://foo.bar"));
+expectType<string>(image(Buffer.from("1")));
+expectType<string>(image(Buffer.from("1"), { width: 1 }));
+expectType<string>(image(Buffer.from("1"), { width: "1px" }));
+expectType<string>(image(Buffer.from("1"), { width: "auto" }));
+expectType<string>(image(Buffer.from("1"), { height: 1 }));
+expectType<string>(image(Buffer.from("1"), { height: "1px" }));
+expectType<string>(image(Buffer.from("1"), { height: "auto" }));
+expectType<string>(image(Buffer.from("1"), { preserveAspectRatio: false }));
+expectType<string>(iTerm.setCwd("/foo/bar"));
+expectType<string>(iTerm.annotation("foo bar"));

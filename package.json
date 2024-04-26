@@ -18,8 +18,7 @@
 		"node": ">=14.16"
 	},
 	"scripts": {
-		"test": "ava && tsd",
-		"//test": "xo && ava && tsd"
+		"test": "node --test && tsd"
 	},
 	"files": [
 		"index.js",
@@ -51,9 +50,7 @@
 		"iterm2"
 	],
 	"devDependencies": {
-		"@types/node": "^18.7.18",
-		"ava": "^4.3.3",
-		"tsd": "^0.24.1",
-		"xo": "^0.52.3"
+		"@types/node": "20.12.7",
+		"tsd": "0.31.0"
 	}
 }

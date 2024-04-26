@@ -1,8 +1,10 @@
-import test from 'ava';
-import ansiEscapes from './index.js';
+import assert from 'node:assert';
+import {test} from 'node:test';
+
+import * as ansiEscapes from './index.js';
 
 test('main', t => {
-	t.true(Object.keys(ansiEscapes).length > 0);
-	t.is(typeof ansiEscapes.cursorTo, 'function');
-	t.is(ansiEscapes.cursorTo(2, 2), '\u001B[3;3H');
+	assert(Object.keys(ansiEscapes).length > 0);
+	assert.equal(typeof ansiEscapes.cursorTo, 'function');
+	assert.equal(ansiEscapes.cursorTo(2, 2), '\u001B[3;3H');
 });
