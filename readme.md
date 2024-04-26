@@ -11,11 +11,19 @@ npm install ansi-escapes
 ## Usage
 
 ```js
-import * as ansiEscapes from 'ansi-escapes';
+import ansiEscapes from 'ansi-escapes';
 
 // Moves the cursor two rows up and to the left
 process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 //=> '\u001B[2A\u001B[1000D'
+```
+
+Or use named exports...
+
+```js
+import {cursorUp, cursorLeft} from `ansi-escapes`;
+
+// etc, as above...
 ```
 
 **You can also use it in the browser with Xterm.js:**

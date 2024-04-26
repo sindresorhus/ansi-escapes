@@ -1,4 +1,4 @@
-import type {Buffer} from 'node:buffer';
+import type { Buffer } from 'node:buffer';
 
 // From https://github.com/sindresorhus/type-fest
 type Primitive =
@@ -264,3 +264,6 @@ export namespace iTerm {
   */
 	function annotation(message: string, options?: AnnotationOptions): string;
 }
+declare const ansiEscapes: typeof import('./index');
+
+export default ansiEscapes
