@@ -2,8 +2,8 @@ import {Buffer} from 'node:buffer';
 import {expectType} from 'tsd';
 import ansiEscapes from './index.js';
 
-// Note: As in test.js, only test the default export.  Named exports are assumed
-// to work if this passes.
+// Note: `ansiEscapes` is composed of the named exports, so we don't need to
+// test named export types directly.
 
 expectType<string>(ansiEscapes.cursorTo(0));
 expectType<string>(ansiEscapes.cursorTo(0, 1));
