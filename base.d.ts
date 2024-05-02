@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-import type { Buffer } from 'node:buffer';
-
 // From https://github.com/sindresorhus/type-fest
 type Primitive =
 	| null // eslint-disable-line @typescript-eslint/ban-types
@@ -237,31 +234,29 @@ export function link(text: string, url: string): string;
 /**
 Display an image.
 
-_Currently only supported on iTerm2 >=3_
-
 See [term-img](https://github.com/sindresorhus/term-img) for a higher-level module.
 
-@param buffer - Buffer of an image. Usually read in with `fs.readFile()`.
+@param data - Image data. Usually read in with `fs.readFile()`.
 */
-export function image(buffer: Buffer, options?: ImageOptions): string;
+export function image(data: Uint8Array, options?: ImageOptions): string;
 
-export namespace iTerm {
+export const iTerm: {
 	/**
-  [Inform iTerm2](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
+	[Inform iTerm2](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
 
-  @param cwd - Current directory. Default: `process.cwd()`.
-  */
-	function setCwd(cwd?: string): string;
+	@param cwd - Current directory. Default: `process.cwd()`.
+	*/
+	setCwd(cwd?: string): string,
 
 	/**
-  An annotation looks like this when shown:
+	An annotation looks like this when shown:
 
-  ![screenshot of iTerm annotation](https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png)
+	![screenshot of iTerm annotation](https://user-images.githubusercontent.com/924465/64382136-b60ac700-cfe9-11e9-8a35-9682e8dc4b72.png)
 
-  See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
+	See the [iTerm Proprietary Escape Codes documentation](https://iterm2.com/documentation-escape-codes.html) for more information.
 
-  @param message - The message to display within the annotation. The `|` character is disallowed and will be stripped.
-  @returns An escape code which will create an annotation when printed in iTerm2.
-  */
-	function annotation(message: string, options?: AnnotationOptions): string;
-}
+	@param message - The message to display within the annotation. The `|` character is disallowed and will be stripped.
+	@returns An escape code which will create an annotation when printed in iTerm2.
+	*/
+	annotation(message: string, options?: AnnotationOptions): string
+};

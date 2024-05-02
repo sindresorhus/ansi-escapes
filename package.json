@@ -11,11 +11,13 @@
 		"url": "https://sindresorhus.com"
 	},
 	"type": "module",
-	"exports": "./index.js",
-	"types": "./index.d.ts",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
 	"sideEffects": false,
 	"engines": {
-		"node": ">=14.16"
+		"node": ">=18"
 	},
 	"scripts": {
 		"test": "ava && tsd",
@@ -23,7 +25,9 @@
 	},
 	"files": [
 		"index.js",
-		"index.d.ts"
+		"index.d.ts",
+		"base.js",
+		"base.d.ts"
 	],
 	"keywords": [
 		"ansi",
@@ -48,12 +52,19 @@
 		"codes",
 		"cursor",
 		"iterm",
-		"iterm2"
+		"iterm2",
+		"clear",
+		"screen",
+		"erase",
+		"scrollback"
 	],
+	"dependencies": {
+		"environment": "^1.0.0"
+	},
 	"devDependencies": {
-		"@types/node": "20.12.7",
-		"ava": "^4.3.3",
+		"@types/node": "20.12.8",
+		"ava": "^6.1.2",
 		"tsd": "0.31.0",
-		"xo": "^0.52.3"
+		"xo": "^0.58.0"
 	}
 }

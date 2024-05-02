@@ -1,2 +1,2 @@
-export * from './base.d.js';
-export * as default from './base.d.js';
+export * from './base.js';
+export * as default from './base.js';

@@ -1,15 +1,14 @@
 import process from 'node:process';
+import {isBrowser} from 'environment';
 
 const ESC = '\u001B[';
 const OSC = '\u001B]';
 const BEL = '\u0007';
 const SEP = ';';
 
-/* global window */
-const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
-
 const isTerminalApp = !isBrowser && process.env.TERM_PROGRAM === 'Apple_Terminal';
 const isWindows = !isBrowser && process.platform === 'win32';
+
 const cwdFunction = isBrowser ? () => {
 	throw new Error('`process.cwd()` only works in Node.js, not the browser.');
 } : process.cwd;
@@ -115,7 +114,7 @@ export const link = (text, url) => [
 	BEL,
 ].join('');
 
-export const image = (buffer, options = {}) => {
+export const image = (data, options = {}) => {
 	let returnValue = `${OSC}1337;File=inline=1`;
 
 	if (options.width) {
@@ -130,7 +129,7 @@ export const image = (buffer, options = {}) => {
 		returnValue += ';preserveAspectRatio=0';
 	}
 
-	return returnValue + ':' + buffer.toString('base64') + BEL;
+	return returnValue + ':' + Buffer.from(data).toString('base64') + BEL;
 };
 
 export const iTerm = {
@@ -139,13 +138,13 @@ export const iTerm = {
 	annotation(message, options = {}) {
 		let returnValue = `${OSC}1337;`;
 
-		const hasX = typeof options.x !== 'undefined';
-		const hasY = typeof options.y !== 'undefined';
-		if ((hasX || hasY) && !(hasX && hasY && typeof options.length !== 'undefined')) {
+		const hasX = options.x !== undefined;
+		const hasY = options.y !== undefined;
+		if ((hasX || hasY) && !(hasX && hasY && options.length !== undefined)) {
 			throw new Error('`x`, `y` and `length` must be defined when `x` or `y` is defined');
 		}
 
-		message = message.replace(/\|/g, '');
+		message = message.replaceAll('|', '');
 
 		returnValue += options.isHidden ? 'AddHiddenAnnotation=' : 'AddAnnotation=';
 

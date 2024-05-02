@@ -1,4 +1,2 @@
-import * as ansiEscapes from './base.js';
-
-export default ansiEscapes;
 export * from './base.js';
+export * as default from './base.js';

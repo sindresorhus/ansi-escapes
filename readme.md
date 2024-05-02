@@ -21,7 +21,7 @@ process.stdout.write(ansiEscapes.cursorUp(2) + ansiEscapes.cursorLeft);
 Or use named exports...
 
 ```js
-import {cursorUp, cursorLeft} from `ansi-escapes`;
+import {cursorUp, cursorLeft} from 'ansi-escapes';
 
 // etc, as above...
 ```
@@ -163,8 +163,6 @@ Create a clickable link.
 ### image(filePath, options?)
 
 Display an image.
-
-*Currently only supported on iTerm2 >=3*
 
 See [term-img](https://github.com/sindresorhus/term-img) for a higher-level module.
 
