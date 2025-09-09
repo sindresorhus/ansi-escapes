@@ -35,6 +35,7 @@ expectType<string>(ansiEscapes.eraseScreen);
 expectType<string>(ansiEscapes.scrollUp);
 expectType<string>(ansiEscapes.scrollDown);
 expectType<string>(ansiEscapes.clearScreen);
+expectType<string>(ansiEscapes.clearViewport);
 expectType<string>(ansiEscapes.clearTerminal);
 expectType<string>(ansiEscapes.enterAlternativeScreen);
 expectType<string>(ansiEscapes.exitAlternativeScreen);

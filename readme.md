@@ -134,9 +134,18 @@ Scroll display up one line.
 
 Scroll display down one line.
 
+### clearViewport
+
+Clear only the visible terminal screen (viewport) without affecting scrollback buffer or terminal state.
+
+This is a safer alternative to `clearScreen` that works consistently across terminals.
+
 ### clearScreen
 
-Clear the terminal screen. (Viewport)
+Clear the terminal screen.
+
+> [!WARNING]
+> This uses RIS (Reset to Initial State) which may also clear scrollback buffer in some terminals (xterm.js, VTE) and reset terminal modes. Consider using `clearViewport()` for safer viewport-only clearing.
 
 ### clearTerminal
 

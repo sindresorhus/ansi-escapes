@@ -200,7 +200,21 @@ Scroll display down one line.
 export const scrollDown: string;
 
 /**
-Clear the terminal screen. (Viewport)
+Clear only the visible terminal screen (viewport) without affecting scrollback buffer or terminal state.
+
+This is a safer alternative to `clearScreen` that works consistently across terminals.
+*/
+export const clearViewport: string;
+
+/**
+Clear the terminal screen.
+
+⚠️ **Warning:** Uses RIS (Reset to Initial State) which may also:
+- Clear scrollback buffer in some terminals (xterm.js, VTE)
+- Reset terminal modes and state
+- Not behave consistently across different terminals
+
+Consider using `clearViewport` for safer viewport-only clearing.
 */
 export const clearScreen: string;
 

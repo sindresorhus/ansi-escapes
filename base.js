@@ -86,6 +86,8 @@ export const scrollDown = ESC + 'T';
 
 export const clearScreen = '\u001Bc';
 
+export const clearViewport = `${eraseScreen}${ESC}H`;
+
 export const clearTerminal = isWindows
 	? `${eraseScreen}${ESC}0f`
 	// 1. Erases the screen (Only done in case `2` is not supported)
