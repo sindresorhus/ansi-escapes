@@ -1,5 +1,5 @@
 import test from 'ava';
-import ansiEscapes, {cursorTo} from './index.js';
+import ansiEscapes, {cursorTo, setCwd} from './index.js';
 
 test('default export', t => {
 	t.true(Object.keys(ansiEscapes).length > 0);
@@ -9,4 +9,5 @@ test('default export', t => {
 
 test('named export(s)', t => {
 	t.is(cursorTo, ansiEscapes.cursorTo);
+	t.is(setCwd, ansiEscapes.setCwd);
 });

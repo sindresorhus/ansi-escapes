@@ -260,3 +260,19 @@ export const iTerm: {
 	*/
 	annotation(message: string, options?: AnnotationOptions): string
 };
+
+export const ConEmu: {
+	/**
+	[Inform ConEmu](https://conemu.github.io/en/AnsiEscapeCodes.html#ConEmu_specific_OSC) about shell current working directory.
+
+	@param cwd - Current directory. Default: `process.cwd()`.
+	*/
+	setCwd(cwd?: string): string
+};
+
+/**
+Set the current working directory for both iTerm2 and ConEmu.
+
+@param cwd - Current directory. Default: `process.cwd()`.
+*/
+export function setCwd(cwd?: string): string;

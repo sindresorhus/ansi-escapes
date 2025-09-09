@@ -193,12 +193,26 @@ The width and height are given as a number followed by a unit, or the word "auto
 Type: `boolean`\
 Default: `true`
 
+### setCwd(path?)
+
+Type: `string`\
+Default: `process.cwd()`
+
+Set the current working directory for both iTerm2 and ConEmu.
+
 ### iTerm.setCwd(path?)
 
 Type: `string`\
 Default: `process.cwd()`
 
 [Inform iTerm2](https://www.iterm2.com/documentation-escape-codes.html) of the current directory to help semantic history and enable [Cmd-clicking relative paths](https://coderwall.com/p/b7e82q/quickly-open-files-in-iterm-with-cmd-click).
+
+### ConEmu.setCwd(path?)
+
+Type: `string`\
+Default: `process.cwd()`
+
+[Inform ConEmu](https://conemu.github.io/en/AnsiEscapeCodes.html#ConEmu_specific_OSC) about shell current working directory.
 
 ### iTerm.annotation(message, options?)
 

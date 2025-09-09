@@ -52,3 +52,5 @@ expectType<string>(
 );
 expectType<string>(ansiEscapes.iTerm.setCwd('/foo/bar'));
 expectType<string>(ansiEscapes.iTerm.annotation('foo bar'));
+expectType<string>(ansiEscapes.ConEmu.setCwd('/foo/bar'));
+expectType<string>(ansiEscapes.setCwd('/foo/bar'));

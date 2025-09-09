@@ -161,3 +161,9 @@ export const iTerm = {
 		return returnValue + BEL;
 	},
 };
+
+export const ConEmu = {
+	setCwd: (cwd = cwdFunction()) => `${OSC}9;9;${cwd}${BEL}`,
+};
+
+export const setCwd = (cwd = cwdFunction()) => iTerm.setCwd(cwd) + ConEmu.setCwd(cwd);
