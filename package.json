@@ -1,6 +1,6 @@
 {
 	"name": "ansi-escapes",
-	"version": "7.0.0",
+	"version": "7.1.0",
 	"description": "ANSI escape codes for manipulating the terminal",
 	"license": "MIT",
 	"repository": "sindresorhus/ansi-escapes",
