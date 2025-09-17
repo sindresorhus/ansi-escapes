@@ -131,7 +131,9 @@ export const image = (data, options = {}) => {
 		returnValue += ';preserveAspectRatio=0';
 	}
 
-	return returnValue + ':' + Buffer.from(data).toString('base64') + BEL;
+	const imageBuffer = Buffer.from(data);
+
+	return returnValue + `;size=${imageBuffer.byteLength}` + ':' + imageBuffer.toString('base64') + BEL;
 };
 
 export const iTerm = {
