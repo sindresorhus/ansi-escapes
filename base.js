@@ -131,7 +131,10 @@ export const image = (data, options = {}) => {
 		returnValue += ';preserveAspectRatio=0';
 	}
 
-	return returnValue + ':' + Buffer.from(data).toString('base64') + BEL;
+	const imageBuffer = Buffer.from(data);
+
+	// `size` is optional in the spec, but xterm.js requires it.
+	return returnValue + `;size=${imageBuffer.byteLength}` + ':' + imageBuffer.toString('base64') + BEL;
 };
 
 export const iTerm = {
