@@ -133,6 +133,7 @@ export const image = (data, options = {}) => {
 
 	const imageBuffer = Buffer.from(data);
 
+	// `size` is optional in the spec, but xterm.js requires it.
 	return returnValue + `;size=${imageBuffer.byteLength}` + ':' + imageBuffer.toString('base64') + BEL;
 };
 
