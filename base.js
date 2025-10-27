@@ -1,3 +1,4 @@
+import os from 'node:os';
 import process from 'node:process';
 import {isBrowser} from 'environment';
 
@@ -88,7 +89,16 @@ export const clearScreen = '\u001Bc';
 
 export const clearViewport = `${eraseScreen}${ESC}H`;
 
-export const clearTerminal = isWindows
+
+function isOldWindows() {
+  const osRelease = os.release().split('.')
+  const major = Number(osRelease[0])
+  const build = Number(osRelease[2])
+  if (major < 10) return true
+  if (major === 10) return build < 10586
+  return false
+}
+export const clearTerminal = isWindows && isOldWindows()
 	? `${eraseScreen}${ESC}0f`
 	// 1. Erases the screen (Only done in case `2` is not supported)
 	// 2. Erases the whole screen including scrollback buffer
